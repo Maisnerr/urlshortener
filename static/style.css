@@ -1,0 +1,9 @@
+.qrimage{
+    border: 10px solid #000000;
+    padding-bottom: 40px;
+    display: block;
+}
+.urltext{
+    font-size: 20px;
+    color: #000000;
+}

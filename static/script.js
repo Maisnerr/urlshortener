@@ -1,12 +1,16 @@
 // Get form and input elements
 const form = document.getElementById('urlForm');
 const urlInput = document.getElementById('urlInput');
+const shortInput = document.getElementById('shortInput');
 const shortenedUrlDisplay = document.getElementById('shortenedUrl');
+
+var user = "admin";
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent form from submitting traditionally
         
     const longUrl = urlInput.value.trim();
+    const after = shortInput.value.trim();;
 
     if (!longUrl) {
         alert("Please enter a URL");
@@ -20,17 +24,17 @@ form.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json', // Ensure the Content-Type is set to JSON
             },
-            body: JSON.stringify({ long_url: longUrl }) // Send the URL as JSON
+            body: JSON.stringify({ long_url: longUrl, after: after }) // Send the URL as JSON
         });
 
         // Check if the response is OK (status 200-299)
         if (response.ok) {
             const data = await response.json();
             if (data.short_url) {
-                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
+                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext" target="_blank">${data.short_url}</a>`;
 
-                console.log(data.file_url);
                 document.getElementById("qrCodeImage").src = data.file_url;
+                document.getElementById("qrCodeImage").style.display = "block";
             }
         } else {
             const errorData = await response.json();
@@ -41,3 +45,5 @@ form.addEventListener('submit', async (event) => {
         alert('Something went wrong with the request!');
     }
 });
+
+

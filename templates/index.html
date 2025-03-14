@@ -11,16 +11,17 @@
         <h1>URL Shortener</h1>
         <form id="urlForm">
             <label for="urlInput">Enter a URL to shorten:</label><br>
-            <input type="text" id="urlInput" name="urlInput" required><br><br>
+            <input type="text" id="urlInput" name="urlInput" required><br>
+            <input type="text" id="shortInput" name="shortInput"><br><br>
             <button type="submit">Shorten URL</button>
         </form>
     
         <h3>Shortened URL:</h3>
-        <p id="shortenedUrl"></p>
+        <p class="urltext" id="shortenedUrl"></p>
     
         <br><br><br>
 
-        <img id="qrCodeImage" src="{{ url_for('static', filename='icon.png') }}" alt="qr code for shortened url">
+        <img class="qrimage" id="qrCodeImage" src="" alt="qr code for shortened url" style="display: none;">
 
         <script src="{{ url_for('static', filename='script.js') }}">
 

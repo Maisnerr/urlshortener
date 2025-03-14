@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from termcolor import colored
 
 # Ensure that you are in the correct directory
 print(f"Current Working Directory: {os.getcwd()}")
@@ -56,9 +57,9 @@ while not Konec:
         if rows:
             print("\nListing all URLs:")
             for row in rows:
-                print(row)
+                print(colored(row, "green"))
         else:
-            print("No URLs found in the database.")
+            print(colored("No URLs found in the database.", "green"))
 
     elif mezi == vstupy[3]:
         print("Exiting...")
