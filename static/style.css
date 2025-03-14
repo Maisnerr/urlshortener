@@ -1,9 +1,31 @@
-.qrimage{
-    border: 10px solid #000000;
-    padding-bottom: 40px;
-    display: block;
+.outputContainer{
+    display: flex;
+    font-size: 20px;
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+}
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+.mezi{
+    border: #000000 2px solid;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .urltext{
     font-size: 20px;
     color: #000000;
+}
+.url p{
+    margin: 0px;
+}
+.buttons img{
+    margin: 20px 10px 20px 20px;
+}
+.qrImage{
+    height: 270px;
 }

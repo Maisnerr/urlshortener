@@ -4,7 +4,7 @@
         <title>URL Shortener │ Maisner</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}">
+        <link rel="icon" href="{{ url_for('static', filename='/images/icon.png') }}">
         <meta charset="UTF-8"> 
     </head> 
     <body>
@@ -16,12 +16,27 @@
             <button type="submit">Shorten URL</button>
         </form>
     
-        <h3>Shortened URL:</h3>
-        <p class="urltext" id="shortenedUrl"></p>
+
     
         <br><br><br>
 
-        <img class="qrimage" id="qrCodeImage" src="" alt="qr code for shortened url" style="display: none;">
+        <div class="outputContainer">
+            <div class="mezi">
+                <div class="url">
+                    <h3>Shortened URL:</h3>
+                    <p class="urltext" id="shortenedUrl">http://192.168.1.138:5000/</p>
+                </div>
+                <div class="qrImage">
+                    <img id="qrCodeImage" src="{{ url_for('static', filename='/qrs/asda.png') }}" alt="qr code for shortened url"><br>
+                </div>
+            </div>
+        </div>
+        <div class="buttonContainer">
+            <div class="buttons">
+                <a href="#"><img src="{{ url_for('static', filename='/images/downloads.png') }}"></a>
+                <a href="#"><img src="{{ url_for('static', filename='/images/copy.png') }}"></a>
+            </div>
+        </div>
 
         <script src="{{ url_for('static', filename='script.js') }}">
 
