@@ -12,6 +12,7 @@
 .mezi{
     border: #000000 2px solid;
     width: 600px;
+    max-width: 80vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,4 +29,55 @@
 }
 .qrImage{
     height: 270px;
+}
+table, th, td {
+    border:1px solid black;
+    font-size: large;
+    border-radius: 6px;
+    padding: 5px;
+}
+td a{
+    color: black;
+}
+td{
+    text-overflow: ellipsis;  /* Add ellipsis when text overflows */
+    white-space: nowrap;      /* Prevent text wrapping */
+    overflow: hidden;         /* Hide overflowed text */
+    max-width: 10vw;          /* Limit the max width of table cells */
+    word-wrap: break-word;   
+}
+table{
+    background-color: aqua;
+    table-layout: auto;
+    width: 100%;
+}
+th, td{
+    background-color: white;
+}
+.tableContainer{
+    display: flex;
+    width: 100%;              /* Make the table container take full width */
+    justify-content: center;
+}
+.qrImagesDiv{
+    display: flex;
+    justify-content: center;
+}
+.aTableDiv{
+    display: flex;
+    justify-content: center;
+}
+.nowrap{
+    white-space: nowrap; 
+    overflow: hidden;  
+    text-overflow: ellipsis;
+}
+.copyButton{
+    color: black;
+    align-self: flex-end;
+    margin-left: 10px;
+}
+.firstBox{
+    display: flex;
+    justify-content: space-between;
 }

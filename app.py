@@ -7,6 +7,7 @@ from termcolor import colored
 import regex as re
 import qrcode
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -14,17 +15,23 @@ db = SQLAlchemy(app)
 CORS(app)
 
 class URL(db.Model):
+    __tablename__ = "url"
+
     id = db.Column(db.Integer, primary_key=True)
     long_url = db.Column(db.String(2048), nullable=False)
 
     short_url = db.Column(db.String(10), unique=True, nullable=False)
+
+    clicks = db.Column(db.Integer(), nullable=False)
+    date = db.Column(db.String(10), nullable=False)
+
 
 def is_valid_url(url):
     """
     Validate the URL format using regex.
     Returns True if valid, False otherwise.
     """
-    regex = r'^(https?|ftp)://[^\s/$.?#].[^\s]*$'  # Simple regex for http/https URLs
+    regex = r'^(https?|ftp)://[^\s/$.?#].[^\s]*$'
     return re.match(regex, url) is not None
 
 def generate_short_url(url):
@@ -46,10 +53,10 @@ def new_short_url():
 
 def generate_qr_code(short_url):
     qr = qrcode.QRCode(
-        version=1,  # Controls the size of the QR code. Version 1 is the smallest size.
-        error_correction=qrcode.constants.ERROR_CORRECT_L,  # Error correction level (low)
-        box_size=10,  # Size of each box
-        border=1  # Border around the QR code (1 reduces whitespace)
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=1
     )
     qr.add_data("http://192.168.1.138:5000/" + short_url)
     qr.make(fit=True)
@@ -69,18 +76,31 @@ def check_after(after):
         pass
     else:
         return "invalid"
-    
     for i in after:
         if(i not in characters):
             return "invalid"
     return "chill"
 
+def format_for_return(entry):
+    data = []
+    data.append(entry.short_url)
+
+    max_length = 80
+
+    if(len(entry.long_url) > max_length):
+        data.append(str((entry.long_url[:-(len(entry.long_url)-max_length)]))+"...")
+    else:
+        data.append(entry.long_url)
+
+    data.append(entry.clicks)
+
+    data.append(entry.date)
+
+    return data
+
 @app.route("/")
 def index():
     all_urls = URL.query.all()
-    # You can either render these URLs on a webpage or print them in the terminal
-    for url in all_urls:
-        print(colored(f"{url.short_url} - {url.long_url}", "red"))
 
     return render_template("index.html")
 
@@ -88,16 +108,16 @@ def index():
 def shorten_url():
     data = request.json
     long_url = data.get("long_url")
+    date = data.get("date")
 
     after = data.get("after")
     normal_url = True
 
     if after != "":
         if check_after(after) == "invalid":
-            return jsonify({"error": "Invalid character in after. Please use 3-10 charecters and 0-9;a-Z" }), 400
+            return jsonify({"error": "Invalid character in after. Please use 3-10 characters and 0-9;a-Z" }), 400
         elif check_after(after) == "used":
-            short_url = after
-            return jsonify({"short_url": "http://192.168.1.138:5000/" + short_url, "file_url": f"http://192.168.1.138:5000/static/qrs/{short_url}.png"})
+            return jsonify({"error": "This short url is already used, please try another one"}), 400
         else:
             normal_url = False
             short_url = after
@@ -117,7 +137,7 @@ def shorten_url():
         if existing_url:
             return jsonify({"short_url": "http://192.168.1.138:5000/" + existing_url.short_url, "file_url": f"http://192.168.1.138:5000/static/qrs/{existing_url.short_url}.png"})
 
-    new_entry = URL(long_url=long_url, short_url=short_url)
+    new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=date)
 
     generate_qr_code(short_url)
 
@@ -130,8 +150,25 @@ def shorten_url():
 def redirect_to_long(short_url):
     url_entry = URL.query.filter_by(short_url=short_url).first()
     if url_entry:
+        url_entry.clicks += 1
+        db.session.commit()
+        print(colored("adding +1 to "+str(url_entry.clicks), "blue"))
         return redirect(url_entry.long_url)
     return jsonify({"error": "URL not found"}), 404
 
+@app.route("/getdata", methods=["POST"])
+def return_data():
+    data = request.json
+
+    amount = data.get("amount")
+
+    url_entry = URL.query.get(int(URL.query.count())-int(amount))
+
+    mezi = format_for_return(url_entry)
+
+    return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3]})
+
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0", port=5000)
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True, host="0.0.0.0", port=5000)

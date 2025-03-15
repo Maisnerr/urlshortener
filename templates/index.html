@@ -2,9 +2,10 @@
 <html lang="cs">    
     <head> 
         <title>URL Shortener │ Maisner</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="/static//style.css">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static', filename='/images/icon.png') }}">
+        <link rel="icon" href="/static//images/icon.png">   
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
         <meta charset="UTF-8"> 
     </head> 
     <body>
@@ -15,9 +16,7 @@
             <input type="text" id="shortInput" name="shortInput"><br><br>
             <button type="submit">Shorten URL</button>
         </form>
-    
 
-    
         <br><br><br>
 
         <div class="outputContainer">
@@ -27,16 +26,24 @@
                     <p class="urltext" id="shortenedUrl">http://192.168.1.138:5000/</p>
                 </div>
                 <div class="qrImage">
-                    <img id="qrCodeImage" src="{{ url_for('static', filename='/qrs/asda.png') }}" alt="qr code for shortened url"><br>
+                    <img id="qrCodeImage" src="/static//images/default_qr.png" alt="qr code for shortened url"><br>
                 </div>
             </div>
+        </div><br><br>
+        
+        <div class="tableContainer">
+            <table style="max-width: 50%; min-width: 10%;" id="myTable" class="nowrap">
+                <tr>
+                    <th>Short link</th>
+                    <th>Original Link</th>
+                    <th>Qr Code</th>
+                    <th>Clicks</th>
+                    <th>Date</th>
+                </tr>
+            </table>
         </div>
-        <div class="buttonContainer">
-            <div class="buttons">
-                <a href="#"><img src="{{ url_for('static', filename='/images/downloads.png') }}"></a>
-                <a href="#"><img src="{{ url_for('static', filename='/images/copy.png') }}"></a>
-            </div>
-        </div>
+
+        <p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p>
 
         <script src="{{ url_for('static', filename='script.js') }}">
 
