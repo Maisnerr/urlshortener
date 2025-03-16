@@ -1,10 +1,11 @@
-const localurl = "https://98b8-185-186-196-91.ngrok-free.app/"
-// http://192.168.1.138:5000
+const localurl = "https://a18a-185-186-196-91.ngrok-free.app/"
+// http://192.168.1.138:5000/
 
 const form = document.getElementById('urlForm');
 const urlInput = document.getElementById('urlInput');
 const shortInput = document.getElementById('shortInput');
 const shortenedUrlDisplay = document.getElementById('shortenedUrl');
+const spinner = document.getElementById("spinner");
 
 var user = "admin";
 
@@ -64,12 +65,14 @@ form.addEventListener('submit', async (event) => {
 
     // Send a POST request to Flask backend
     try {
+        spinner.style.display = "block";
         const response = await fetch(localurl+'/shorten', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ensure the Content-Type is set to JSON
             },
             body: JSON.stringify({ long_url: longUrl, after: after, date: date}) // Send the URL as JSON
+            
         });
 
         // Check if the response is OK (status 200-299)
@@ -78,14 +81,17 @@ form.addEventListener('submit', async (event) => {
             if (data.short_url) {
                 shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext outputa" target="_blank"><u>${data.short_url}</u></a>`;
 
-                document.getElementById("qrCodeImage").src = data.file_url;
+                document.getElementById("qrCodeImage").src = data.img_url;
                 document.getElementById("qrCodeImage").style.display = "block";
 
                 document.getElementById("utilsid").style.display = "flex";
 
-                document.getElementById("utilid0").href = data.file_url;
+                document.getElementById("utilid0").href = await data.img_url;
+                document.getElementById("utilid0").target = "_blank";
                 gotoUrl = data.short_url;
                 document.getElementById("utilid2").href = data.file_url;
+
+                spinner.style.display = "none";
             }
         } else {
             const errorData = await response.json();
@@ -97,20 +103,10 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-
-
-// #############################
-// AZ BUDE HTTPS UDELAT TO JINAK
-// #############################
 function copyUrl(link){
     if(link==""){
         link = gotoUrl;
     }
-    const textArea = document.createElement('textarea');
-    textArea.value = link;
-    document.body.appendChild(textArea);
-    
-    textArea.select();
 
-    document.execCommand('copy');
+    navigator.clipboard.writeText(link);
 }

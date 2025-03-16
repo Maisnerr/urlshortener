@@ -6,8 +6,20 @@ import string
 from termcolor import colored
 import regex as re
 import qrcode
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary.uploader
+import io
+from PIL import Image
 
-LOCALURL = "https://98b8-185-186-196-91.ngrok-free.app/"
+
+cloudinary.config(
+    cloud_name="drxgvf9hq",
+    api_key="697539514348871",
+    api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
+)
+
+LOCALURL = "https://a18a-185-186-196-91.ngrok-free.app/"
 ##LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
@@ -26,6 +38,8 @@ class URL(db.Model):
 
     clicks = db.Column(db.Integer(), nullable=False)
     date = db.Column(db.String(10), nullable=False)
+
+    img_url = db.Column(db.String(2048), nullable=False)
 
 
 def is_valid_url(url):
@@ -62,9 +76,20 @@ def generate_qr_code(short_url):
     )
     qr.add_data(LOCALURL + short_url)
     qr.make(fit=True)
-    img = qr.make_image(fill='black', back_color='white')
-    img.save(f"static/qrs/{short_url}.png")
+    file = qr.make_image(fill='black', back_color='white')
+
+    img_byte_arr = io.BytesIO()
+    file.save(img_byte_arr, format='PNG')  # Save as PNG or another format
+    img_byte_arr.seek(0)  # Reset buffer position to the beginning
+
+    response = cloudinary.uploader.upload(img_byte_arr)
+
+    image_url = response["secure_url"]
+    print(f"Image uploaded successfully! URL: {image_url}")
+
     print(colored(f"QR Code generated and saved as {short_url}.png","green"))
+
+    return image_url
 
 def check_after(after):
     characters = string.digits + string.ascii_letters
@@ -95,6 +120,8 @@ def format_for_return(entry):
     data.append(entry.clicks)
 
     data.append(entry.date)
+
+    data.append(entry.img_url)
 
     return data
 
@@ -139,16 +166,16 @@ def shorten_url():
     existing_url = URL.query.filter_by(long_url=long_url).first()
     if normal_url:
         if existing_url:
-            return jsonify({"short_url": LOCALURL + existing_url.short_url, "file_url": f"{LOCALURL}static/qrs/{existing_url.short_url}.png"})
+            return jsonify({"short_url": LOCALURL + existing_url.short_url, "file_url": f"{LOCALURL}static/qrs/{existing_url.short_url}.png", "img_url": existing_url.img_url})
 
-    new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=date)
+    img_url = generate_qr_code(short_url)
 
-    generate_qr_code(short_url)
+    new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=date, img_url=img_url)
 
     db.session.add(new_entry)
     db.session.commit()
 
-    return jsonify({"short_url": LOCALURL + short_url, "file_url": f"{LOCALURL}static/qrs/{short_url}.png"})   
+    return jsonify({"short_url": LOCALURL + short_url, "file_url": f"{LOCALURL}static/qrs/{short_url}.png", "img_url": img_url})   
 
 @app.route("/<short_url>")
 def redirect_to_long(short_url):
@@ -179,7 +206,7 @@ def return_data():
 
     mezi = format_for_return(url_entry)
 
-    return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3]})
+    return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3], "img_url": mezi[4]})
 
 if __name__ == "__main__":
     with app.app_context():

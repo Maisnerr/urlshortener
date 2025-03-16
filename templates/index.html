@@ -4,9 +4,20 @@
         <title>URL Shortener │ Maisner</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static', filename='/images/icon.png') }}">   
+        <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">   
         <meta name="viewport" content="width=device-width, initial-scale=0.7">
         <meta charset="UTF-8"> 
+        <style>
+            @font-face {
+                font-family: "inter-bold";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Bold.ttf') }}");
+            }
+
+            @font-face {
+                font-family: "inter-light";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Light.ttf') }}");
+            }
+        </style>
     </head> 
     <body>
         <div class="center">
@@ -32,12 +43,13 @@
         </div>
 
         <div class="center output interbold">
-            <p id="shortenedUrl" style="color: white;">Here is where your output will appear!</p>
-            <a target="_blank" id="utilid0" href="{{ url_for('static', filename='/images/default_qr') }}" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
+            <p id="shortenedUrl" style="color: white;">Here is where your output will appear:</p>
+            <a id="utilid0" href="#" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
             <div class="utils" id="utilsid" style="display: none;">
                 <a id="utilid1" href="#" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
                 <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
-            </div>            
+            </div> 
+            <div style="display: none" id="spinner"><img style="background-color: white;" src="{{ url_for('static', filename='/images/empty.png') }}" class="spinner" alt="spinner"></div>          
         </div>
 
         <script src="{{ url_for('static', filename='script.js') }}  "></script>
