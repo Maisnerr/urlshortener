@@ -1,3 +1,6 @@
+const localurl = "https://98b8-185-186-196-91.ngrok-free.app/"
+// http://192.168.1.138:5000
+
 const form = document.getElementById('urlForm');
 const urlInput = document.getElementById('urlInput');
 const shortInput = document.getElementById('shortInput');
@@ -61,7 +64,7 @@ form.addEventListener('submit', async (event) => {
 
     // Send a POST request to Flask backend
     try {
-        const response = await fetch('http://192.168.1.138:5000/shorten', {
+        const response = await fetch(localurl+'/shorten', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Ensure the Content-Type is set to JSON
@@ -73,13 +76,14 @@ form.addEventListener('submit', async (event) => {
         if (response.ok) {
             const data = await response.json();
             if (data.short_url) {
-                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext outputa" target="_blank">${data.short_url}</a>`;
+                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext outputa" target="_blank"><u>${data.short_url}</u></a>`;
 
                 document.getElementById("qrCodeImage").src = data.file_url;
                 document.getElementById("qrCodeImage").style.display = "block";
 
                 document.getElementById("utilsid").style.display = "flex";
 
+                document.getElementById("utilid0").href = data.file_url;
                 gotoUrl = data.short_url;
                 document.getElementById("utilid2").href = data.file_url;
             }
@@ -93,53 +97,7 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-async function appendRow() {
-    let table = document.getElementById("myTable");
 
-    let pole = [1,1,1,1,1];
-    const len = [1,1,1,1,1,1,1,1,1,1];
-
-    let input = []
-
-    for(let i in len){
-        mezi = table.insertRow();
-
-        try{
-            const response = await fetch("http://192.168.1.138:5000/getdata", {
-                method: "POST",
-                headers:{
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({amount: i})
-            });
-
-            if(response.ok){
-                const data = await response.json();
-                input = [data.short_url, data.long_url, "", data.clicks, data.date];
-            }else{
-                console.log(errorData.error);
-            }
-        } catch (error){
-            console.error('Error during request:', error);
-        }
-
-        for(let j in pole){
-            if(j == 0){
-                mezi.insertCell(j).innerHTML = `<div class="firstBox"><a href='http://192.168.1.138:5000/${input[j]}' class="nowrap">http://192.168.1.138:5000/${input[j]}</a><button class="copy" onclick="copyUrl('http://192.168.1.138:5000/${input[j]}')">cau</button></div>`;
-            }else if(j == 2){
-                mezi.insertCell(j).innerHTML = `<div class="qrImagesDiv"><img src='/static//qrs/${input[0]}.png' alt="QR CODE" width="50px"></div>`;
-            }else if(j > 2){
-                mezi.insertCell(j).innerHTML = `<p class="aTableDiv nowrap">${input[j]}</p>`; //align do prostred!!!
-            }else{
-                mezi.insertCell(j).innerHTML = `<p class="nowrap">${input[j]}</p>`; 
-            }
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    appendRow();
-});
 
 // #############################
 // AZ BUDE HTTPS UDELAT TO JINAK

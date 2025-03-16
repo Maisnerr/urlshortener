@@ -7,6 +7,8 @@ from termcolor import colored
 import regex as re
 import qrcode
 
+LOCALURL = "https://98b8-185-186-196-91.ngrok-free.app/"
+##LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
@@ -58,7 +60,7 @@ def generate_qr_code(short_url):
         box_size=10,
         border=1
     )
-    qr.add_data("http://192.168.1.138:5000/" + short_url)
+    qr.add_data(LOCALURL + short_url)
     qr.make(fit=True)
     img = qr.make_image(fill='black', back_color='white')
     img.save(f"static/qrs/{short_url}.png")
@@ -85,13 +87,20 @@ def format_for_return(entry):
     data = []
     data.append(entry.short_url)
 
-    data.append(entry.long_url)
+    if(len(entry.long_url) > 128):
+        data.append(str((entry.long_url[:-(len(entry.long_url)-128)]))+"...")
+    else:
+        data.append(entry.long_url)
 
     data.append(entry.clicks)
 
     data.append(entry.date)
 
     return data
+
+@app.route("/adminpanel")
+def adminpanel():
+    return render_template("adminpanel.html")
 
 @app.route("/")
 def index():
@@ -130,7 +139,7 @@ def shorten_url():
     existing_url = URL.query.filter_by(long_url=long_url).first()
     if normal_url:
         if existing_url:
-            return jsonify({"short_url": "http://192.168.1.138:5000/" + existing_url.short_url, "file_url": f"http://192.168.1.138:5000/static/qrs/{existing_url.short_url}.png"})
+            return jsonify({"short_url": LOCALURL + existing_url.short_url, "file_url": f"{LOCALURL}static/qrs/{existing_url.short_url}.png"})
 
     new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=date)
 
@@ -139,7 +148,7 @@ def shorten_url():
     db.session.add(new_entry)
     db.session.commit()
 
-    return jsonify({"short_url": "http://192.168.1.138:5000/" + short_url, "file_url": f"http://192.168.1.138:5000/static/qrs/{short_url}.png"})   
+    return jsonify({"short_url": LOCALURL + short_url, "file_url": f"{LOCALURL}static/qrs/{short_url}.png"})   
 
 @app.route("/<short_url>")
 def redirect_to_long(short_url):
@@ -150,6 +159,15 @@ def redirect_to_long(short_url):
         print(colored("adding +1 to "+str(url_entry.clicks), "blue"))
         return redirect(url_entry.long_url)
     return jsonify({"error": "URL not found"}), 404
+
+@app.route("/getlength", methods=["POST"])
+def getlength():
+    length = []
+
+    for i in range(URL.query.count()):
+        length.append(1)
+
+    return jsonify({"len": length})
 
 @app.route("/getdata", methods=["POST"])
 def return_data():

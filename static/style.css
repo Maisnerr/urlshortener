@@ -11,6 +11,78 @@ body{
     background-color: #0B101B;
 }
 
+
+.outputContainer{
+    display: flex;
+    font-size: 20px;
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+}
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+.mezi{
+    border: #000000 2px solid;
+    width: 600px;
+    max-width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+.urltext{
+    font-size: 20px;
+    color: #000000;
+}
+.url p{
+    margin: 0px;
+}
+.buttons img{
+    margin: 20px 10px 20px 20px;
+}
+.qrImage{
+    height: 270px;
+}
+table, th, td {
+    border:1px solid black;
+    font-size: large;
+    border-radius: 6px;
+    padding: 5px;
+}
+td a{
+    color: black;
+}
+.qrImagesDiv{
+    display: flex;
+    justify-content: center;
+}
+.aTableDiv{
+    display: flex;
+    justify-content: center;
+}
+.nowrap{
+    white-space: nowrap; 
+    overflow: hidden;  
+    text-overflow: ellipsis;
+}
+.copyButton{
+    color: black;
+    align-self: flex-end;
+    margin-left: 10px;
+}
+.firstBox{
+    display: flex;
+    justify-content: space-between;
+}
+#qrCodeImage{
+    margin-left: 40px;
+}
+
+
+
+
 .custom-gradient{
     font-size: 24px;             /* Adjust font size if needed */
     color: transparent;          /* Make text transparent for gradient effect */
@@ -45,9 +117,13 @@ body{
 .interbold{
     font-family: inter-bold;
 }
+.smoke{
+    color:wheat;
+}
 .linkinputform{
-    width: 25%;
+    width: 30%;
     min-width: 450px;
+    max-width: 550px;
     height: 70px;
     border-radius: 45px;
     border: 5px #353C4A solid;
@@ -97,4 +173,16 @@ body{
     width: 64px;
     height: 64px;
     margin: 20px 10px;
+}
+.tablecontainer{
+    background-color: #ffffff;
+    padding: 50px;
+}
+table{
+    border: #353C4A solid 2px;
+    background-color: #353C4A;
+    border-radius: 25px;
+    width: 100vw;
+    color: white;
+    text-decoration: none;
 }

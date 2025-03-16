@@ -2,9 +2,9 @@
 <html lang="cs">    
     <head> 
         <title>URL Shortener │ Maisner</title>
-        <link rel="stylesheet" href="/static//style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="/static//images/icon.png">   
+        <link rel="icon" href="{{ url_for('static', filename='/images/icon.png') }}">   
         <meta name="viewport" content="width=device-width, initial-scale=0.7">
         <meta charset="UTF-8"> 
     </head> 
@@ -12,6 +12,8 @@
         <div class="center">
             <h1 class="custom-gradient webname interbold">Linkly</h1>
         </div>
+
+        <img src="{{ url_for('static', filename='/images/icon.png') }}" style="width: 70px; position: absolute; top: 5px; left: 5px;">
             
         <div class="center">
             <p class="custom-gradient subname interbold">Shorten Your looooong links :)</p>
@@ -23,7 +25,7 @@
 
         <div class="center linkinputdiv">
             <form id="urlForm" class="linkinputform">
-                <img class="linkicon" src="/static//images/link.png" width="40px" height="40px">
+                <img class="linkicon" src="{{ url_for('static', filename='/images/link.png') }}" width="40px" height="40px">
                 <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
                 <button type="submit" class="shortenbutton interbold">Shorten Now!</button>
             </form>
@@ -31,13 +33,13 @@
 
         <div class="center output interbold">
             <p id="shortenedUrl" style="color: white;">Here is where your output will appear!</p>
-            <a target="_blank" href="/static//images/default_qr.png" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
+            <a target="_blank" id="utilid0" href="{{ url_for('static', filename='/images/default_qr') }}" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
             <div class="utils" id="utilsid" style="display: none;">
-                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="/static//images/copy.png" alt="Copy to clipboard"></a>
-                <a id="utilid2" href="/static//images/default_qr.png" download><img src="/static//images/download.png" alt="Download QR code"></a>
+                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
+                <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
             </div>            
         </div>
 
-        <script src="/static//script.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}  "></script>
     </body>
 </html>
