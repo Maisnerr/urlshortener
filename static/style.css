@@ -1,83 +1,100 @@
-.outputContainer{
+@font-face {
+    font-family: "inter-bold";
+    src: url("/static//inter/Inter_24pt-Bold.ttf");
+}
+@font-face {
+    font-family: "inter-light";
+    src: url("/static//inter/Inter_24pt-Light.ttf");
+}
+body{
+    height: 100%;
+    background-color: #0B101B;
+}
+
+.custom-gradient{
+    font-size: 24px;             /* Adjust font size if needed */
+    color: transparent;          /* Make text transparent for gradient effect */
+    background: linear-gradient(90deg, #EB568E 0%, #144EE3 100%); /* Apply gradient */
+    -webkit-background-clip: text; /* Apply gradient on text */
+}
+.subname{
+    font-size: 4rem;
+    word-wrap: break-word;
+    margin: 50px 0px 1vw 0px;
+}
+.webname{
+    font-size: 2rem;
+}
+.center{
     display: flex;
-    font-size: 20px;
-    color: #000000;
+    justify-content: center;
+    align-items: center;
+    height: 100%;     
+    text-align: center;
+}
+.desc{
+    width: 25%;
+    min-width: 300px;
+    font-size: 1rem;
+    text-align: center;
+    color: #C9CED6;
+}
+.interlight{
+    font-family: inter-light;
+}
+.interbold{
+    font-family: inter-bold;
+}
+.linkinputform{
+    width: 25%;
+    min-width: 450px;
+    height: 70px;
+    border-radius: 45px;
+    border: 5px #353C4A solid;
+    background-color: #181E29;
+    display:flex;
+}
+.linkinputdiv{
+    margin-bottom: 100px;
+}
+.linkinput{
+    background-color: transparent;
+    border: transparent;
+    color: #EB568E;
+    font-size: 1.2rem;
+    flex-grow: 1; 
+}
+.linkicon{
+    padding: 15px;
+}
+.shortenbutton{
+    background-color: #144EE3;
+    border: transparent;
+    border-radius: 45px;
+    margin: 3px;
+    padding: 0px 10px;
+    color: #C9CED6;
+    font-size: 1rem;
+    position: relative;
+    transition: 0.3s;
+}
+.shortenbutton:hover{
+    background-color: #326cff;
+}
+.output{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.buttonContainer{
-    display: flex;
-    justify-content: center;
+.outputa{
+    color: white;
+    margin-bottom: 40px;
+    text-decoration: none;
 }
-.mezi{
-    border: #000000 2px solid;
-    width: 600px;
-    max-width: 80vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.urltext{
-    font-size: 20px;
-    color: #000000;
-}
-.url p{
-    margin: 0px;
-}
-.buttons img{
-    margin: 20px 10px 20px 20px;
-}
-.qrImage{
-    height: 270px;
-}
-table, th, td {
-    border:1px solid black;
-    font-size: large;
-    border-radius: 6px;
-    padding: 5px;
-}
-td a{
-    color: black;
-}
-td{
-    text-overflow: ellipsis;  /* Add ellipsis when text overflows */
-    white-space: nowrap;      /* Prevent text wrapping */
-    overflow: hidden;         /* Hide overflowed text */
-    max-width: 10vw;          /* Limit the max width of table cells */
-    word-wrap: break-word;   
-}
-table{
-    background-color: aqua;
-    table-layout: auto;
-    width: 100%;
-}
-th, td{
-    background-color: white;
-}
-.tableContainer{
-    display: flex;
-    width: 100%;              /* Make the table container take full width */
-    justify-content: center;
-}
-.qrImagesDiv{
-    display: flex;
-    justify-content: center;
-}
-.aTableDiv{
-    display: flex;
-    justify-content: center;
-}
-.nowrap{
-    white-space: nowrap; 
-    overflow: hidden;  
-    text-overflow: ellipsis;
-}
-.copyButton{
-    color: black;
-    align-self: flex-end;
-    margin-left: 10px;
-}
-.firstBox{
-    display: flex;
-    justify-content: space-between;
+.utils img{
+    width: 64px;
+    height: 64px;
+    margin: 20px 10px;
 }

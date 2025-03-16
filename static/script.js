@@ -5,6 +5,8 @@ const shortenedUrlDisplay = document.getElementById('shortenedUrl');
 
 var user = "admin";
 
+let gotoUrl = "";
+
 const datum = new Date();
 switch(datum.getMonth()){
     case 0:
@@ -50,7 +52,7 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent form from submitting traditionally
         
     const longUrl = urlInput.value.trim();
-    const after = shortInput.value.trim();
+    const after = "";
 
     if (!longUrl) {
         alert("Please enter a URL");
@@ -71,10 +73,15 @@ form.addEventListener('submit', async (event) => {
         if (response.ok) {
             const data = await response.json();
             if (data.short_url) {
-                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext" target="_blank">${data.short_url}</a>`;
+                shortenedUrlDisplay.innerHTML = `<a href="${data.short_url}" class="urltext outputa" target="_blank">${data.short_url}</a>`;
 
                 document.getElementById("qrCodeImage").src = data.file_url;
                 document.getElementById("qrCodeImage").style.display = "block";
+
+                document.getElementById("utilsid").style.display = "flex";
+
+                gotoUrl = data.short_url;
+                document.getElementById("utilid2").href = data.file_url;
             }
         } else {
             const errorData = await response.json();
@@ -90,7 +97,7 @@ async function appendRow() {
     let table = document.getElementById("myTable");
 
     let pole = [1,1,1,1,1];
-    const len = [1,1,1,1,1];
+    const len = [1,1,1,1,1,1,1,1,1,1];
 
     let input = []
 
@@ -138,6 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // AZ BUDE HTTPS UDELAT TO JINAK
 // #############################
 function copyUrl(link){
+    if(link==""){
+        link = gotoUrl;
+    }
     const textArea = document.createElement('textarea');
     textArea.value = link;
     document.body.appendChild(textArea);

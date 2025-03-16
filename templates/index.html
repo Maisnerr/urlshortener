@@ -9,44 +9,35 @@
         <meta charset="UTF-8"> 
     </head> 
     <body>
-        <h1>URL Shortener</h1>
-        <form id="urlForm">
-            <label for="urlInput">Enter a URL to shorten:</label><br>
-            <input type="text" id="urlInput" name="urlInput" required><br>
-            <input type="text" id="shortInput" name="shortInput"><br><br>
-            <button type="submit">Shorten URL</button>
-        </form>
-
-        <br><br><br>
-
-        <div class="outputContainer">
-            <div class="mezi">
-                <div class="url">
-                    <h3>Shortened URL:</h3>
-                    <p class="urltext" id="shortenedUrl">http://192.168.1.138:5000/</p>
-                </div>
-                <div class="qrImage">
-                    <img id="qrCodeImage" src="/static//images/default_qr.png" alt="qr code for shortened url"><br>
-                </div>
-            </div>
-        </div><br><br>
-        
-        <div class="tableContainer">
-            <table style="max-width: 50%; min-width: 10%;" id="myTable" class="nowrap">
-                <tr>
-                    <th>Short link</th>
-                    <th>Original Link</th>
-                    <th>Qr Code</th>
-                    <th>Clicks</th>
-                    <th>Date</th>
-                </tr>
-            </table>
+        <div class="center">
+            <h1 class="custom-gradient webname interbold">Linkly</h1>
+        </div>
+            
+        <div class="center">
+            <p class="custom-gradient subname interbold">Shorten Your looooong links :)</p>
         </div>
 
-        <p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p><p>text</p>
+        <div class="center interlight descdiv">
+            <p class="center desc">Linkly is an efficient and easy-to-use URL shortening service that streamlines your online experience.</p>
+        </div><br><br><br><br><br>
 
-        <script src="{{ url_for('static', filename='script.js') }}">
+        <div class="center linkinputdiv">
+            <form id="urlForm" class="linkinputform">
+                <img class="linkicon" src="/static//images/link.png" width="40px" height="40px">
+                <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
+                <button type="submit" class="shortenbutton interbold">Shorten Now!</button>
+            </form>
+        </div>
 
-        </script>
+        <div class="center output interbold">
+            <p id="shortenedUrl" style="color: white;">Here is where your output will appear!</p>
+            <a target="_blank" href="/static//images/default_qr.png" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
+            <div class="utils" id="utilsid" style="display: none;">
+                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="/static//images/copy.png" alt="Copy to clipboard"></a>
+                <a id="utilid2" href="/static//images/default_qr.png" download><img src="/static//images/download.png" alt="Download QR code"></a>
+            </div>            
+        </div>
+
+        <script src="/static//script.js"></script>
     </body>
 </html>

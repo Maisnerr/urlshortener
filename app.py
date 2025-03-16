@@ -85,12 +85,7 @@ def format_for_return(entry):
     data = []
     data.append(entry.short_url)
 
-    max_length = 80
-
-    if(len(entry.long_url) > max_length):
-        data.append(str((entry.long_url[:-(len(entry.long_url)-max_length)]))+"...")
-    else:
-        data.append(entry.long_url)
+    data.append(entry.long_url)
 
     data.append(entry.clicks)
 
