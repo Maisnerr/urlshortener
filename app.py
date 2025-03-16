@@ -22,7 +22,7 @@ cloudinary.config(
 )
 
 ##LOCALURL = "https://linkly-fnbx.onrender.com/"
-LOCALURL = "http://192.168.1.138:5000/"
+LOCALURL = "https://linkly-fnbx.onrender.com/"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
