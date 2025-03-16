@@ -1,4 +1,4 @@
-const localurl = "http://192.168.1.138:5000/"
+const localurl = "https://linkly-fnbx.onrender.com/"
 
 async function appendRow() {
     let table = document.getElementById("myTable");

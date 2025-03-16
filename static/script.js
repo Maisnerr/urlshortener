@@ -1,4 +1,4 @@
-const localurl = "http://192.168.1.138:5000/"
+const localurl = "https://linkly-fnbx.onrender.com/"
 // http://192.168.1.138:5000/
 
 const form = document.getElementById('urlForm');

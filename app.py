@@ -21,7 +21,7 @@ cloudinary.config(
     api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
 )
 
-##LOCALURL = "https://a18a-185-186-196-91.ngrok-free.app/"
+##LOCALURL = "https://linkly-fnbx.onrender.com/"
 LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
