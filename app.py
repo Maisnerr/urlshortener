@@ -11,6 +11,8 @@ import cloudinary.api
 import cloudinary.uploader
 import io
 from PIL import Image
+from waitress import serve
+import logging
 
 
 cloudinary.config(
@@ -19,8 +21,8 @@ cloudinary.config(
     api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
 )
 
-LOCALURL = "https://a18a-185-186-196-91.ngrok-free.app/"
-##LOCALURL = "http://192.168.1.138:5000/"
+##LOCALURL = "https://a18a-185-186-196-91.ngrok-free.app/"
+LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
@@ -211,4 +213,5 @@ def return_data():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.logger.setLevel(logging.DEBUG)
+    serve(app, host="0.0.0.0", port=5000)

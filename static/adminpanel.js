@@ -1,4 +1,4 @@
-const localurl = "https://a18a-185-186-196-91.ngrok-free.app/"
+const localurl = "http://192.168.1.138:5000/"
 
 async function appendRow() {
     let table = document.getElementById("myTable");

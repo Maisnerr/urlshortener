@@ -1,4 +1,4 @@
-const localurl = "https://a18a-185-186-196-91.ngrok-free.app/"
+const localurl = "http://192.168.1.138:5000/"
 // http://192.168.1.138:5000/
 
 const form = document.getElementById('urlForm');
@@ -89,7 +89,8 @@ form.addEventListener('submit', async (event) => {
                 document.getElementById("utilid0").href = await data.img_url;
                 document.getElementById("utilid0").target = "_blank";
                 gotoUrl = data.short_url;
-                document.getElementById("utilid2").href = data.file_url;
+                document.getElementById("utilid2").href = data.img_url;
+                console.log(data.img_url);
 
                 spinner.style.display = "none";
             }
