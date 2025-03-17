@@ -212,7 +212,7 @@ def return_data():
 
 @app.route("/serverhealth", methods=["POST"])
 def server_health():
-    return jsonify({"Health":"Healthy"})
+    return "OK", 200
 
 if __name__ == "__main__":
     with app.app_context():
