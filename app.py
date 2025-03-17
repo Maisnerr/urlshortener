@@ -210,7 +210,7 @@ def return_data():
 
     return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3], "img_url": mezi[4]})
 
-@app.route("/serverhealth", methods=["POST"])
+@app.route("/serverhealth", methods=["GET"])
 def server_health():
     return "OK", 200
 
