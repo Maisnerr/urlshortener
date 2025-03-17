@@ -197,3 +197,31 @@ table{
         transform: rotate(720deg);
     }
 }
+.showcase{
+    width: 25%;
+    min-width: 300px;
+    font-size: 1rem;
+    text-align: left;
+    color: #C9CED6;
+    width: 500px;
+}
+.showcase a{
+    color: #326cff;
+}
+.showcasediv{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.showcasedivimgs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 100px;
+}
+.header{
+    font-family: inter-bold;
+    font-size: 1.5rem;
+    position: relative;
+    right: 2%;
+}

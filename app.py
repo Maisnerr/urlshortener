@@ -21,8 +21,8 @@ cloudinary.config(
     api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
 )
 
-##LOCALURL = "https://linkly-fnbx.onrender.com/"
 LOCALURL = "https://linkly-fnbx.onrender.com/"
+##LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
@@ -210,8 +210,13 @@ def return_data():
 
     return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3], "img_url": mezi[4]})
 
+@app.route("/serverhealth", methods=["POST"])
+def server_health():
+    return jsonify({"Health":"Healthy"})
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.logger.setLevel(logging.DEBUG)
+    #app.run(debug=True, host="0.0.0.0", port=5000)
     serve(app, host="0.0.0.0", port=5000)

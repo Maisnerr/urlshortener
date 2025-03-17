@@ -10,12 +10,12 @@
         <style>
             @font-face {
                 font-family: "inter-bold";
-                src: url("{{ url_for('static', filename='inter/Inter_18pt-Bold.ttf') }}");
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Bold.woff2') }}");
             }
 
             @font-face {
                 font-family: "inter-light";
-                src: url("{{ url_for('static', filename='inter/Inter_18pt-Light.ttf') }}");
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Light.woff2') }}");
             }
         </style>
     </head> 
@@ -50,6 +50,16 @@
                 <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
             </div> 
             <div style="display: none" id="spinner"><img style="background-color: white;" src="{{ url_for('static', filename='/images/empty.png') }}" class="spinner" alt="spinner"></div>          
+        </div>
+
+        <div class="center showcasediv">
+            <p class="showcase interlight"><span class="header">Quick and efficient URL shortener!<br></span>ShortURL lets you condense lengthy links from <a href="https://www.instagram.com/">Instagram</a>, <a href="https://www./facebook.com/">Facebook</a>, <a href="https://www.youtube.com/">YouTube</a>, <a href="https://www.x.com">X</a>, <a href="https://linkedin.com/">LinkedIn</a>, <a href="https://www.whatsapp.com">WhatsApp</a>, <a href="https://www.tiktok.com">TikTok</a>, blogs, and websites. Simply paste your long URL, click the "Shorten URL" button, and get a compact link. Copy the shortened URL and share it across websites, chats, and emails. Track the number of clicks your link receives after shortening</p>
+            <div class="showcasedivimgs">
+                <img src="{{ url_for('static', filename='images/icons/like.png') }}" width="70px">
+                <img src="{{ url_for('static', filename='images/icons/chain.png') }}" width="70px">
+                <img src="{{ url_for('static', filename='images/icons/shield.png') }}" width="70px">
+                <img src="{{ url_for('static', filename='images/icons/hand.png') }}" width="70px">
+            </div>
         </div>
 
         <script src="{{ url_for('static', filename='script.js') }}  "></script>
