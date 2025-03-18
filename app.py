@@ -28,7 +28,12 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-CORS(app)
+SITES = [
+    "https://www.linkly.fun", 
+    "https://linkly.fun", 
+    "https://linkly-fnbx.onrender.com"
+]
+CORS(app, resources={r"/*": {"origins": SITES}})
 
 class URL(db.Model):
     __tablename__ = "url"
