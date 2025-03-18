@@ -1,4 +1,4 @@
-const localurl = "https://linkly.fun"
+const localurl = "https://www.linkly.fun"
 
 async function appendRow() {
     let table = document.getElementById("myTable");
