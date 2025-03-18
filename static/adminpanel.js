@@ -1,4 +1,4 @@
-const localurl = "https://linkly-fnbx.onrender.com/"
+const localurl = "linkly.fun/"
 
 async function appendRow() {
     let table = document.getElementById("myTable");
