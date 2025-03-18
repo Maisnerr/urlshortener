@@ -1,4 +1,4 @@
-const localurl = "http://linkly.fun"
+const localurl = "https://linkly.fun"
 // http://192.168.1.138:5000/
 
 const form = document.getElementById('urlForm');
