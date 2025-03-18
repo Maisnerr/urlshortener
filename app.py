@@ -20,8 +20,8 @@ cloudinary.config(
     api_key="697539514348871",
     api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
 )
-
-LOCALURL = "linkly.fun/"
+ 
+LOCALURL = "http://linkly.fun/"
 ##LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
@@ -76,6 +76,7 @@ def generate_qr_code(short_url):
         box_size=10,
         border=1
     )
+
     qr.add_data(LOCALURL + short_url)
     qr.make(fit=True)
     file = qr.make_image(fill='black', back_color='white')
