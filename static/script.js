@@ -1,4 +1,4 @@
-const localurl = "https://www.linkly.fun"
+const localurl = "https://linkly.fun"
 // http://192.168.1.138:5000/
 
 const form = document.getElementById('urlForm');
@@ -84,13 +84,12 @@ form.addEventListener('submit', async (event) => {
                 document.getElementById("qrCodeImage").src = data.img_url;
                 document.getElementById("qrCodeImage").style.display = "block";
 
-                document.getElementById("utilsid").style.display = "flex";
+                document.getElementById("utilsid").style.visibility = "visible";
 
                 document.getElementById("utilid0").href = await data.img_url;
                 document.getElementById("utilid0").target = "_blank";
                 gotoUrl = data.short_url;
                 document.getElementById("utilid2").href = data.img_url;
-                console.log(data.img_url);
 
                 spinner.style.display = "none";
             }

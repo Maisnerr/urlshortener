@@ -40,16 +40,19 @@
                 <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
                 <button type="submit" class="shortenbutton interbold">Shorten Now!</button>
             </form>
+            <a class="interbold statspage" href="{{ url_for('statssite') }}">Or just see statistics of your link ➤</a>
         </div>
 
         <div class="center output interbold">
             <p id="shortenedUrl" style="color: white;">Here is where your output will appear:</p>
-            <a id="utilid0" href="#" id="openqr"><img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png"></a>
-            <div class="utils" id="utilsid" style="display: none;">
-                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
+            <a id="utilid0" id="openqr">
+                <div style="visibility: hidden" id="spinner"><img style="background-color: white;" src="{{ url_for('static', filename='/images/empty.png') }}" class="spinner" alt="spinner"></div>
+                <img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png">
+            </a>
+            <div class="utils" id="utilsid" style="visibility: hidden;">
+                <a id="utilid1" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
                 <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
-            </div> 
-            <div style="display: none" id="spinner"><img style="background-color: white;" src="{{ url_for('static', filename='/images/empty.png') }}" class="spinner" alt="spinner"></div>          
+            </div>      
         </div>
 
         <div class="center showcasediv">

@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html lang="cs">    
+    <head> 
+        <title>URL Shortener │ Maisner</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='statsstyle.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">   
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
+        <meta charset="UTF-8"> 
+        <style>
+            @font-face {
+                font-family: "inter-bold";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Bold.woff2') }}");
+            }
+
+            @font-face {
+                font-family: "inter-light";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Light.woff2') }}");
+            }
+        </style>
+    </head> 
+    <body>
+        <div class="center">
+            <h1 class="custom-gradient webname interbold">Linkly</h1>
+        </div>
+
+        <img src="{{ url_for('static', filename='/images/icon.png') }}" style="width: 70px; position: absolute; top: 5px; left: 5px;">
+            
+        <div class="center">
+            <p class="custom-gradient subname interbold">Enter your shortened url:</p>
+        </div>
+
+        <div class="center linkinputdiv">
+            <form id="urlForm" class="linkinputform">
+                <img class="linkicon" src="{{ url_for('static', filename='/images/link.png') }}" width="40px" height="40px">
+                <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
+                <button type="submit" class="shortenbutton interbold">See the stats!</button>
+            </form>
+        </div>
+
+        <div class="center">
+            <div class="stats">
+                <div class="statsmain">
+                    <span id="statheader" class="statsheader" style="text-align: start;">/</span>
+                    <img id="statimg" class="statsimg" src="{{ url_for('static', filename='/images/default_qr.png') }}" alt="default_qr">
+                </div>
+                <div class="statstext">
+                    <p id="statshort" class="statsp">Short URL:</p>
+                    <p id="statlong" class="statsp">Long URL:</p>
+                    <p id="statclicks" class="statsp">Clicks:</p>
+                    <p id="statdate" class="statsp">Date:</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="home center">
+            <a href="{{ url_for('index') }}" class="custom-gradient interbold">⟨ HOME</a>
+        </div>
+
+        <script src="{{ url_for('static', filename='stats.js') }}  "></script>
+    </body>
+</html>

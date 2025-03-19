@@ -120,9 +120,6 @@ td a{
     background-color: #181E29;
     display:flex;
 }
-.linkinputdiv{
-    margin-bottom: 100px;
-}
 .linkinput{
     background-color: transparent;
     border: transparent;
@@ -146,35 +143,6 @@ td a{
 }
 .shortenbutton:hover{
     background-color: #326cff;
-}
-.output{
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.outputa{
-    color: white;
-    margin-bottom: 40px;
-    text-decoration: none;
-}
-.utils img{
-    width: 64px;
-    height: 64px;
-    margin: 20px 10px;
-}
-.tablecontainer{
-    background-color: #ffffff;
-    padding: 50px;
-}
-table{
-    border: #353C4A solid 2px;
-    background-color: #353C4A;
-    border-radius: 25px;
-    width: 100vw;
-    color: white;
-    text-decoration: none;
 }
 .spinner{
     height: 60px;
@@ -200,39 +168,41 @@ table{
         transform: rotate(720deg);
     }
 }
-.showcase{
-    width: 25%;
-    min-width: 300px;
-    font-size: 1rem;
-    text-align: left;
-    color: #C9CED6;
-    width: 500px;
-}
-.showcase a{
-    color: #326cff;
-}
-.showcasediv{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-}
-.showcasedivimgs{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 100px;
-}
-.header{
-    font-family: inter-bold;
-    font-size: 1.5rem;
-    position: relative;
-    right: 2%;
-}
 .statspage{
     color: #144EE3;
     margin-top: 40px;
-    transition: 0.1s;
 }
-.statspage:hover{
-    color: #5988ff;
+.home a{
+    font-size: 5rem;
+}
+.home a:hover{
+    font-size: 5.3rem;
+    transition: ease 0.1s;
+}
+.statsimg{
+    width: 10vh;
+}
+.stats{
+    margin-top: 25px;
+    color:white;
+    font-family: inter-bold;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 450px;
+}
+.statsmain{
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    font-size: 2.5rem;
+    justify-content: space-around;
+}
+.statsp{
+    margin: 5px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

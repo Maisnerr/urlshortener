@@ -22,7 +22,7 @@ cloudinary.config(
 )
  
 LOCALURL = "https://linkly.fun/"
-##LOCALURL = "http://192.168.1.138:5000/"
+#LOCALURL = "http://192.168.1.138:5000/"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
@@ -31,7 +31,8 @@ db = SQLAlchemy(app)
 SITES = [
     "https://www.linkly.fun", 
     "https://linkly.fun", 
-    "https://linkly-fnbx.onrender.com"
+    "https://linkly-fnbx.onrender.com",
+    "http://192.168.1.138:5000"
 ]
 CORS(app, resources={r"/*": {"origins": SITES}})
 
@@ -137,6 +138,10 @@ def format_for_return(entry):
 def adminpanel():
     return render_template("adminpanel.html")
 
+@app.route("/stats")
+def statssite():
+    return render_template("stats.html")
+
 @app.route("/")
 def index():
     all_urls = URL.query.all()
@@ -195,6 +200,16 @@ def redirect_to_long(short_url):
         return redirect(url_entry.long_url)
     return jsonify({"error": "URL not found"}), 404
 
+@app.route("/stats/<short_url>")
+def actual_get_stats(short_url):
+
+    if(len(short_url)<11):
+        url_entry = URL.query.filter_by(short_url=short_url).first()
+    else:
+        return jsonify({"error": "retard"}), 400
+
+    return jsonify({"short_url": short_url, "long_url":url_entry.long_url, "clicks":url_entry.clicks, "date":url_entry.date, "img_url":url_entry.img_url})
+
 @app.route("/getlength", methods=["POST"])
 def getlength():
     length = []
@@ -224,5 +239,5 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.logger.setLevel(logging.DEBUG)
-    #app.run(debug=True, host="0.0.0.0", port=5000)
-    serve(app, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
+    #serve(app, host="0.0.0.0", port=5000)
