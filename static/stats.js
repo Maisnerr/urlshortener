@@ -1,4 +1,4 @@
-const localurl = "https://linkly.fun";
+const localurl = "https://www.linkly.fun";
 const form = document.getElementById('urlForm');
 
 const statheader = document.getElementById("statheader");
