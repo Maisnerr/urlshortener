@@ -31,11 +31,11 @@ def send_webhook(title, desc, color):
     data = {
     "username": "Linkly.fun",
     "avatar_url": "https://i.imgur.com/4M34hi2.png",  # Optional custom avatar
-    "embeds": {
+    "embeds": [{
             "title": title,
             "description": desc,
             "color": color
-            }
+            }]
     }
     requests.post(WEBHOOK_URL, json=data)
 
