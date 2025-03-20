@@ -14,6 +14,7 @@ from PIL import Image
 from waitress import serve
 import logging
 import requests
+import datetime
 
 
 cloudinary.config(
@@ -26,18 +27,20 @@ LOCALURL = "https://www.linkly.fun/"
 #LOCALURL = "http://192.168.1.138:5000/"¨
 
 WEBHOOK_URL = "https://discord.com/api/webhooks/1352341789641674964/uu_LZsZzgeMRYcYAVjQzmDBY67xzi-TnRi3gm-wNdgxuX8u2Lhx3muWcRs0oMHld3_wQ"
+WEBHOOK_HEALTH = "https://discord.com/api/webhooks/1352350729456717855/fV5UH_gC6bsveYyWINDoQXnC9ymp2dIGv5jl9oXm4xQApGgm7seO0QEuaxf0Q7V3TSyK"
 
-def send_webhook(title, desc, color):
+def send_webhook(title, desc, color, type):
     data = {
     "username": "Linkly.fun",
     "avatar_url": "https://i.imgur.com/4M34hi2.png",  # Optional custom avatar
     "embeds": [{
             "title": title,
             "description": desc,
-            "color": color
+            "color": color,
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
             }]
     }
-    requests.post(WEBHOOK_URL, json=data)
+    requests.post(type, json=data)
 
 
 app = Flask(__name__)
@@ -160,7 +163,7 @@ def statssite():
 
 @app.route("/")
 def index():
-    send_webhook("Someone visited Linkly.fun!", f"crazy", int("41ba4f", 16))
+    send_webhook("Someone visited Linkly.fun!", f"crazy", int("41ba4f", 16), WEBHOOK_URL)
     return render_template("index.html")
 
 @app.route("/shorten", methods=["POST"])
@@ -203,7 +206,7 @@ def shorten_url():
     db.session.add(new_entry)
     db.session.commit()
 
-    send_webhook("New URL Created!", f"URL: {LOCALURL+short_url}", int("5fe3a8", 16))
+    send_webhook("New URL Created!", f"URL: {LOCALURL+short_url}", int("5fe3a8", 16), WEBHOOK_URL)
     return jsonify({"short_url": LOCALURL + short_url, "file_url": f"{LOCALURL}static/qrs/{short_url}.png", "img_url": img_url})   
 
 @app.route("/<short_url>")
@@ -213,7 +216,7 @@ def redirect_to_long(short_url):
         url_entry.clicks += 1
         db.session.commit()
         print(colored("adding +1 to "+str(url_entry.clicks), "blue"))
-        send_webhook("URL Redirected!", f"URL: {LOCALURL+short_url}", int("5951e8", 16))
+        send_webhook("URL Redirected!", f"URL: {LOCALURL+short_url}", int("5951e8", 16), WEBHOOK_URL)
         return redirect(url_entry.long_url)
     return jsonify({"error": "URL not found"}), 404
 
@@ -250,12 +253,13 @@ def return_data():
 
 @app.route("/serverhealth", methods=["GET"])
 def server_health():
+    send_webhook("New URL Created!", f"Server is running just fine", int("34d958", 16), WEBHOOK_HEALTH)
     return "OK", 200
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.logger.setLevel(logging.DEBUG)
-    send_webhook("Server Running!", f"All good g", int("41ba4f", 16))
+    send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
     app.run(debug=True, host="0.0.0.0", port=5000)
     #serve(app, host="0.0.0.0", port=5000)
