@@ -163,7 +163,6 @@ def statssite():
 
 @app.route("/")
 def index():
-    send_webhook("Someone visited Linkly.fun!", f"crazy", int("41ba4f", 16), WEBHOOK_URL)
     return render_template("index.html")
 
 @app.route("/shorten", methods=["POST"])
@@ -253,7 +252,7 @@ def return_data():
 
 @app.route("/serverhealth", methods=["GET"])
 def server_health():
-    send_webhook("New URL Created!", f"Server is running just fine", int("34d958", 16), WEBHOOK_HEALTH)
+    send_webhook("Server Check!", f"Server is running just fine", int("34d958", 16), WEBHOOK_HEALTH)
     return "OK", 200
 
 if __name__ == "__main__":
@@ -261,5 +260,5 @@ if __name__ == "__main__":
         db.create_all()
     app.logger.setLevel(logging.DEBUG)
     send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
-    app.run(debug=True, host="0.0.0.0", port=5000)
-    #serve(app, host="0.0.0.0", port=5000)
+    #app.run(debug=True, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=5000)
