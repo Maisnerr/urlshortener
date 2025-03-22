@@ -15,6 +15,10 @@ from waitress import serve
 import logging
 import requests
 import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 PRODUCTION = True
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -22,9 +26,9 @@ PRODUCTION = True
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 cloudinary.config(
-    cloud_name="drxgvf9hq",
-    api_key="697539514348871",
-    api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
+    cloud_name=os.getenv("CLOUDINARY_NAME"),
+    api_key=os.getenv("CLOUDINARY_KEY"),
+    api_secret=os.getenv("CLOUDINARY_SECRET")
 )
  
 if(PRODUCTION):
@@ -32,8 +36,8 @@ if(PRODUCTION):
 else:
     LOCALURL = "http://192.168.1.138:5000/"
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1352341789641674964/uu_LZsZzgeMRYcYAVjQzmDBY67xzi-TnRi3gm-wNdgxuX8u2Lhx3muWcRs0oMHld3_wQ"
-WEBHOOK_HEALTH = "https://discord.com/api/webhooks/1352350729456717855/fV5UH_gC6bsveYyWINDoQXnC9ymp2dIGv5jl9oXm4xQApGgm7seO0QEuaxf0Q7V3TSyK"
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+WEBHOOK_HEALTH = os.getenv("WEBHOOK_HEALTH")
 
 def send_webhook(title, desc, color, type):
     data = {
@@ -50,7 +54,7 @@ def send_webhook(title, desc, color, type):
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres.wovsocudgamzopygicvs:Pneumatika1@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 SITES = [
