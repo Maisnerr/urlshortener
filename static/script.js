@@ -1,5 +1,6 @@
 const localurl = "https://www.linkly.fun"
-// http://192.168.1.138:5000/
+// http://192.168.1.138:5000
+// https://www.linkly.fun
 
 const form = document.getElementById('urlForm');
 const urlInput = document.getElementById('urlInput');

@@ -24,7 +24,7 @@ cloudinary.config(
 )
  
 LOCALURL = "https://www.linkly.fun/"
-#LOCALURL = "http://192.168.1.138:5000/"¨
+#LOCALURL = "http://192.168.1.138:5000/"
 
 WEBHOOK_URL = "https://discord.com/api/webhooks/1352341789641674964/uu_LZsZzgeMRYcYAVjQzmDBY67xzi-TnRi3gm-wNdgxuX8u2Lhx3muWcRs0oMHld3_wQ"
 WEBHOOK_HEALTH = "https://discord.com/api/webhooks/1352350729456717855/fV5UH_gC6bsveYyWINDoQXnC9ymp2dIGv5jl9oXm4xQApGgm7seO0QEuaxf0Q7V3TSyK"
@@ -44,7 +44,7 @@ def send_webhook(title, desc, color, type):
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres.wovsocudgamzopygicvs:Pneumatika1@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres.wovsocudgamzopygicvs:Pneumatika1@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 SITES = [
@@ -255,9 +255,7 @@ def server_health():
     return "OK", 200
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.logger.setLevel(logging.DEBUG)
     send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
-    #app.run(debug=True, host="0.0.0.0", port=5000)
-    serve(app, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
+    #serve(app, host="0.0.0.0", port=5000)
