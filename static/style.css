@@ -121,7 +121,7 @@ td a{
     display:flex;
 }
 .linkinputdiv{
-    margin-bottom: 100px;
+    margin-bottom: 1px;
 }
 .linkinput{
     background-color: transparent;
@@ -176,29 +176,25 @@ table{
     color: white;
     text-decoration: none;
 }
-.spinner{
-    height: 60px;
-    width: 60px;
-    border: 10px solid;
-    border-radius: 60px;
-    border-color: #000000 transparent #000000 transparent;
-    animation: spin 1.5s ease infinite;
-}
-#spinner{
-    height: 80px;
-    width: 80px;
-    border: 10px solid rgb(255, 255, 255);
-    position: relative;
-    border-radius: 60px;
-    background-color: white;
-    top: 190px;
-    left: 85px;
-    overflow: hidden;
-}
-@keyframes spin{
-    to{
-        transform: rotate(720deg);
+@keyframes spinanim {
+    from {
+        transform: rotate(0deg);
     }
+    to {
+        transform: rotate(1440deg);
+    }
+}
+
+.spinner {
+    position: relative;
+    top: 250px;
+    background-color: white;
+    border: 10px solid;
+    border-color: #000000 #ffffff #ffffff #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spinanim 2s ease infinite;
 }
 .showcase{
     width: 25%;

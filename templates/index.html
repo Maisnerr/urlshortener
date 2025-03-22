@@ -44,18 +44,18 @@
         </div>
 
         <div class="center output interbold">
+            <div class="spinner" style="visibility: hidden;" id="spinner"></div>
             <p id="shortenedUrl" style="color: white;">Here is where your output will appear:</p>
             <a id="utilid0" id="openqr">
-                <img alt="QR Code" id="qrCodeImage" src="/static//images/default_qr.png">
+                <img alt="QR Code" id="qrCodeImage" src="{{ url_for('static', filename='/images/default_qr.png') }}">
             </a>
             <div class="utils" id="utilsid" style="visibility: hidden;">
                 <a id="utilid1" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
                 <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
             </div>      
         </div>
-
         <div class="center showcasediv">
-            <p class="showcase interlight"><span class="header">Quick and efficient URL shortener!<br></span>ShortURL lets you condense lengthy links from <a href="https://www.instagram.com/">Instagram</a>, <a href="https://www/facebook.com/">Facebook</a>, <a href="https://www.youtube.com/">YouTube</a>, <a href="https://www.x.com">X</a>, <a href="https://linkedin.com/">LinkedIn</a>, <a href="https://www.whatsapp.com">WhatsApp</a>, <a href="https://www.tiktok.com">TikTok</a>, blogs, and websites. Simply paste your long URL, click the "Shorten URL" button, and get a compact link. Copy the shortened URL and share it across websites, chats, and emails. Track the number of clicks your link receives after shortening</p>
+            <p class="showcase interlight"><span class="header">Quick and efficient URL shortener!<br></span>ShortURL lets you condense lengthy links from <a href="https://www.instagram.com/">Instagram</a>, <a href="https://www/facebook.com/">Facebook</a>, <a href="https://www.youtube.com/">YouTube</a>, <a href="https://www.x.com">X</a>, <a href="https://linkedin.com/">LinkedIn</a>, <a href="https://www.whatsapp.com">WhatsApp</a>, <a href="https://www.tiktok.com">TikTok</a>, blogs, and websites. Simply paste your long URL, click the "Shorten URL" button, and get a compact link. Copy the shortened URL and share it across websites, chats, and emails. <a href="https://linkly.fun/stats">Track the number of clicks your link receives after shortening</a></p>
             <div class="showcasedivimgs">
                 <img src="{{ url_for('static', filename='images/icons/like.png') }}" width="70px">
                 <img src="{{ url_for('static', filename='images/icons/chain.png') }}" width="70px">

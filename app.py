@@ -16,6 +16,10 @@ import logging
 import requests
 import datetime
 
+PRODUCTION = True
+## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## MUSIS ZMENIT KDYZ JDE NA RENDER
+## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 cloudinary.config(
     cloud_name="drxgvf9hq",
@@ -23,8 +27,10 @@ cloudinary.config(
     api_secret="4l8J9Z9ABurPBXQX2rWB471uXb8"
 )
  
-LOCALURL = "https://www.linkly.fun/"
-#LOCALURL = "http://192.168.1.138:5000/"
+if(PRODUCTION):
+    LOCALURL = "https://www.linkly.fun/"
+else:
+    LOCALURL = "http://192.168.1.138:5000/"
 
 WEBHOOK_URL = "https://discord.com/api/webhooks/1352341789641674964/uu_LZsZzgeMRYcYAVjQzmDBY67xzi-TnRi3gm-wNdgxuX8u2Lhx3muWcRs0oMHld3_wQ"
 WEBHOOK_HEALTH = "https://discord.com/api/webhooks/1352350729456717855/fV5UH_gC6bsveYyWINDoQXnC9ymp2dIGv5jl9oXm4xQApGgm7seO0QEuaxf0Q7V3TSyK"
@@ -153,10 +159,6 @@ def format_for_return(entry):
 
     return data
 
-@app.route("/adminpanel")
-def adminpanel():
-    return render_template("adminpanel.html")
-
 @app.route("/stats")
 def statssite():
     return render_template("stats.html")
@@ -256,6 +258,9 @@ def server_health():
 
 if __name__ == "__main__":
     app.logger.setLevel(logging.DEBUG)
-    send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
-    #app.run(debug=True, host="0.0.0.0", port=5000)
-    serve(app, host="0.0.0.0", port=5000)
+    if(PRODUCTION):
+        send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
+        serve(app, host="0.0.0.0", port=5000)
+    else:
+        app.run(debug=True, host="0.0.0.0", port=5000)
+

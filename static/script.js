@@ -54,6 +54,7 @@ switch(datum.getMonth()){
 const date = month+" "+datum.getDate().toString()+" "+datum.getFullYear().toString();
 
 form.addEventListener('submit', async (event) => {
+    spinner.style.visibility = "visible";
     event.preventDefault();  // Prevent form from submitting traditionally
         
     const longUrl = urlInput.value.trim();
@@ -90,6 +91,9 @@ form.addEventListener('submit', async (event) => {
                 document.getElementById("utilid0").target = "_blank";
                 gotoUrl = data.short_url;
                 document.getElementById("utilid2").href = data.img_url;
+                setTimeout(() => {
+                    spinner.style.visibility = "hidden";
+                }, 1000);
             }
         } else {
             const errorData = await response.json();
