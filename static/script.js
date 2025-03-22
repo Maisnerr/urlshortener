@@ -66,7 +66,6 @@ form.addEventListener('submit', async (event) => {
 
     // Send a POST request to Flask backend
     try {
-        spinner.style.display = "block";
         const response = await fetch(localurl+'/shorten', {
             method: 'POST',
             headers: {
@@ -91,8 +90,6 @@ form.addEventListener('submit', async (event) => {
                 document.getElementById("utilid0").target = "_blank";
                 gotoUrl = data.short_url;
                 document.getElementById("utilid2").href = data.img_url;
-
-                spinner.style.display = "none";
             }
         } else {
             const errorData = await response.json();

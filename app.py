@@ -56,7 +56,7 @@ SITES = [
 CORS(app, resources={r"/*": {"origins": SITES}})
 
 class URL(db.Model):
-    __tablename__ = "url"
+    __tablename__ = "Linklyfun"
 
     id = db.Column(db.Integer, primary_key=True)
     long_url = db.Column(db.String(2048), nullable=False)
@@ -64,7 +64,7 @@ class URL(db.Model):
     short_url = db.Column(db.String(10), unique=True, nullable=False)
 
     clicks = db.Column(db.Integer(), nullable=False)
-    date = db.Column(db.String(10), nullable=False)
+    date = db.Column(db.Date, nullable=False, default=datetime.date.today)
 
     img_url = db.Column(db.String(2048), nullable=False)
 
@@ -257,5 +257,5 @@ def server_health():
 if __name__ == "__main__":
     app.logger.setLevel(logging.DEBUG)
     send_webhook("Server Running!", f"All good g", int("41ba4f", 16), WEBHOOK_URL)
-    app.run(debug=True, host="0.0.0.0", port=5000)
-    #serve(app, host="0.0.0.0", port=5000)
+    #app.run(debug=True, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=5000)

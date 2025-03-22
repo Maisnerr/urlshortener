@@ -46,7 +46,7 @@ function showStats(short_url, long_url, clicks, date, img_url){
     statshort.innerHTML = "Short URL: linkly.fun/"+short_url;
     statlong.innerHTML = "Long URL: "+long_url;
     statclicks.innerHTML = "Clicks: "+clicks;
-    statdate.innerHTML = "Date: "+date;
+    statdate.innerHTML = "Date: "+new Date(date).toDateString();
 
     statheader.innerHTML = "/"+short_url;
     statimg.src = img_url;
