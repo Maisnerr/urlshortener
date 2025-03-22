@@ -44,7 +44,7 @@ def send_webhook(title, desc, color, type):
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres.wovsocudgamzopygicvs:Pneumatika1@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 SITES = [
@@ -169,7 +169,6 @@ def index():
 def shorten_url():
     data = request.json
     long_url = data.get("long_url")
-    date = data.get("date")
 
     after = data.get("after")
     normal_url = True
@@ -200,7 +199,7 @@ def shorten_url():
 
     img_url = generate_qr_code(short_url)
 
-    new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=date, img_url=img_url)
+    new_entry = URL(long_url=long_url, short_url=short_url, clicks=0, date=datetime.date.today(), img_url=img_url)
 
     db.session.add(new_entry)
     db.session.commit()
