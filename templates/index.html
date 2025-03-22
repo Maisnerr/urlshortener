@@ -50,7 +50,7 @@
                 <img alt="QR Code" id="qrCodeImage" src="{{ url_for('static', filename='/images/default_qr.png') }}">
             </a>
             <div class="utils" id="utilsid" style="visibility: hidden;">
-                <a id="utilid1" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
+                <a id="utilid1" href="" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
                 <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
             </div>      
         </div>
