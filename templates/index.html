@@ -4,7 +4,7 @@
         <title>Free URL Shortener & QR Code Generator | Linkly.fun</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">   
+        <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}">   
         <meta name="viewport" content="width=device-width, initial-scale=0.7">
         <meta charset="UTF-8">
         <meta name="description" content="Linkly.fun offers a fast, free URL shortener and QR code generator. Easily shorten your links and create custom QR codes for easy sharing. Start now!">
@@ -26,7 +26,7 @@
               "name": "Linkly.fun",
               "description": "A free URL shortener and QR code generator",
               "url": "https://linkly.fun",
-              "logo": "https://linkly.fun/static/images/icon.png",
+              "logo": "https://linkly.fun/staticimages/icon.webp",
               "sameAs": [
                 "https://www.instagram.com/linklyfun",
                 "https://www.facebook.com/linklyfun",
@@ -40,7 +40,7 @@
             <h1 class="custom-gradient webname interbold">Linkly</h1>
         </div>
 
-        <img src="{{ url_for('static', filename='/images/icon.png') }}" alt="Icon" style="width: 70px; position: absolute; top: 5px; left: 5px;">
+        <img src="{{ url_for('static', filename='images/icon.webp') }}" alt="Icon" style="width: 70px; position: absolute; top: 5px; left: 5px;">
             
         <div class="center">
             <p class="custom-gradient subname interbold">Shorten Your looooong links :)</p>
@@ -52,7 +52,7 @@
 
         <div class="center linkinputdiv">
             <form id="urlForm" class="linkinputform">
-                <img alt="Link icon" class="linkicon" src="{{ url_for('static', filename='/images/link.png') }}" width="40px" height="40px">
+                <img alt="Link icon" class="linkicon" src="{{ url_for('static', filename='images/link.webp') }}" width="40px" height="40px">
                 <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
                 <button type="submit" class="shortenbutton interbold">Shorten Now!</button>
             </form>
@@ -63,20 +63,20 @@
             <div class="spinner" style="visibility: hidden;" id="spinner"></div>
             <p id="shortenedUrl" style="color: white;">Here is where your output will appear:</p>
             <a id="utilid0" id="openqr">
-                <img alt="QR Code" id="qrCodeImage" src="{{ url_for('static', filename='/images/default_qr.png') }}">
+                <img alt="QR Code" id="qrCodeImage" src="{{ url_for('static', filename='images/default_qr.webp') }}">
             </a>
             <div class="utils" id="utilsid" style="visibility: hidden;">
-                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="{{ url_for('static', filename='/images/copy.png') }}" alt="Copy to clipboard"></a>
-                <a id="utilid2" href="{{ url_for('static', filename='/images/default_qr.png') }}" download><img src="{{ url_for('static', filename='/images/download.png') }}" alt="Download QR code"></a>
+                <a id="utilid1" href="#" onclick="copyUrl('')"><img src="{{ url_for('static', filename='images/copy.webp') }}" alt="Copy to clipboard"></a>
+                <a id="utilid2" href="{{ url_for('static', filename='images/default_qr.webp') }}" download><img src="{{ url_for('static', filename='images/download.webp') }}" alt="Download QR code"></a>
             </div>      
         </div>
         <div class="center showcasediv">
             <p class="showcase interlight"><span class="header">Quick and efficient URL shortener!<br></span>ShortURL lets you condense lengthy links from <a href="https://www.instagram.com/">Instagram</a>, <a href="https://www/facebook.com/">Facebook</a>, <a href="https://www.youtube.com/">YouTube</a>, <a href="https://www.x.com">X</a>, <a href="https://linkedin.com/">LinkedIn</a>, <a href="https://www.whatsapp.com">WhatsApp</a>, <a href="https://www.tiktok.com">TikTok</a>, blogs, and websites. Simply paste your long URL, click the "Shorten URL" button, and get a compact link. Copy the shortened URL and share it across websites, chats, and emails. <a href="https://linkly.fun/stats">Track the number of clicks your link receives after shortening</a></p>
             <div class="showcasedivimgs">
-                <img alt="Like" src="{{ url_for('static', filename='images/icons/like.png') }}" width="70px">
-                <img alt="Chain" src="{{ url_for('static', filename='images/icons/chain.png') }}" width="70px">
-                <img alt="Shield" src="{{ url_for('static', filename='images/icons/shield.png') }}" width="70px">
-                <img alt="Hand" src="{{ url_for('static', filename='images/icons/hand.png') }}" width="70px">
+                <img alt="Like" src="{{ url_for('static', filename='images/icons/like.webp') }}" width="70px">
+                <img alt="Chain" src="{{ url_for('static', filename='images/icons/chain.webp') }}" width="70px">
+                <img alt="Shield" src="{{ url_for('static', filename='images/icons/shield.webp') }}" width="70px">
+                <img alt="Hand" src="{{ url_for('static', filename='images/icons/hand.webp') }}" width="70px">
             </div>
         </div>
 

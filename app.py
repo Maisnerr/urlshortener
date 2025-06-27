@@ -20,7 +20,7 @@ import os
 
 load_dotenv()
 
-PRODUCTION = True
+PRODUCTION = False
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ## MUSIS ZMENIT KDYZ JDE NA RENDER
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
