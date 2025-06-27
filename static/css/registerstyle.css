@@ -1,0 +1,303 @@
+body{
+    height: 100%;
+    background-color: #0B101B;
+}
+
+
+.outputContainer{
+    display: flex;
+    font-size: 20px;
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+}
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+.mezi{
+    border: #000000 2px solid;
+    width: 600px;
+    max-width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+.urltext{
+    font-size: 20px;
+    color: #000000;
+}
+.url p{
+    margin: 0px;
+}
+.buttons img{
+    margin: 20px 10px 20px 20px;
+}
+.qrImage{
+    height: 270px;
+}
+table, th, td {
+    border:1px solid black;
+    font-size: large;
+    border-radius: 6px;
+    padding: 5px;
+}
+td a{
+    color: black;
+}
+.qrImagesDiv{
+    display: flex;
+    justify-content: center;
+}
+.aTableDiv{
+    display: flex;
+    justify-content: center;
+}
+.nowrap{
+    white-space: nowrap; 
+    overflow: hidden;  
+    text-overflow: ellipsis;
+}
+.copyButton{
+    color: black;
+    align-self: flex-end;
+    margin-left: 10px;
+}
+.firstBox{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+.custom-gradient{
+    font-size: 24px;             /* Adjust font size if needed */
+    color: transparent;          /* Make text transparent for gradient effect */
+    background: linear-gradient(90deg, #EB568E 0%, #144EE3 100%); /* Apply gradient */
+    -webkit-background-clip: text; /* Apply gradient on text */
+}
+.subname{
+    font-size: 4rem;
+    word-wrap: break-word;
+    margin: 50px 0px 1vw 0px;
+}
+.webname{
+    font-size: 2rem;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;     
+    text-align: center;
+    flex-direction: column;
+}
+.desc{
+    width: 25%;
+    min-width: 300px;
+    font-size: 1rem;
+    text-align: center;
+    color: #C9CED6;
+}
+.interlight{
+    font-family: inter-light;
+}
+.interbold{
+    font-family: inter-bold;
+}
+.smoke{
+    color:wheat;
+}
+.linkinputform{
+    margin-top: 15px;
+    width: 30%;
+    min-width: 450px;
+    max-width: 550px;
+    height: 70px;
+    border-radius: 45px;
+    border: 5px #353C4A solid;
+    background-color: #181E29;
+    display:flex;
+}
+.linkinput{
+    background-color: transparent;
+    border: transparent;
+    color: #ffffff;
+    font-size: 1.2rem;
+    flex-grow: 1; 
+}
+.linkicon{
+    padding: 15px;
+}
+.shortenbutton{
+    background-color: #144EE3;
+    border: transparent;
+    border-radius: 45px;
+    margin: 3px;
+    padding: 0px 10px;
+    color: #C9CED6;
+    font-size: 1rem;
+    position: relative;
+    transition: 0.3s;
+}
+.shortenbutton:hover{
+    background-color: #326cff;
+}
+.spinner{
+    height: 60px;
+    width: 60px;
+    border: 10px solid;
+    border-radius: 60px;
+    border-color: #000000 transparent #000000 transparent;
+    animation: spin 1.5s ease infinite;
+}
+#spinner{
+    height: 80px;
+    width: 80px;
+    border: 10px solid rgb(255, 255, 255);
+    position: relative;
+    border-radius: 60px;
+    background-color: white;
+    top: 190px;
+    left: 85px;
+    overflow: hidden;
+}
+@keyframes spin{
+    to{
+        transform: rotate(720deg);
+    }
+}
+.statspage{
+    color: #144EE3;
+    margin-top: 40px;
+}
+.home {
+    position: fixed;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 10;
+}
+.home a{
+    font-size: 5rem;
+}
+.home a:hover{
+    font-size: 5.3rem;
+    transition: ease 0.1s;
+}
+.statsimg{
+    width: 10vh;
+}
+.stats{
+    margin-top: 25px;
+    color:white;
+    font-family: inter-bold;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 450px;
+}
+.statsmain{
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    font-size: 2.5rem;
+    justify-content: space-around;
+}
+.statsp{
+    margin: 5px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user{
+    position: absolute;
+    top: 33px;
+    right: 33px;
+}
+.login{
+    color: white;
+    display: inline-block;
+    border: #353C4A 2px solid;
+    background-color: none;
+    padding: 10px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.loginChild{
+    color: white;
+    display: inline-block;
+    margin: 0px;
+    padding: 5px;
+    font-size: 25px;
+}
+.loginImg{
+    border-radius: 50%;
+    border: #ffffff 2px solid;
+}
+.login:hover{
+    background-color: #353C4A;
+}
+.showpassword {
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: filter 0.2s, transform 0.2s;
+    filter: brightness(0.85);
+    align-self: center;           /* Vertically center in flex container */
+    height: 40px;                 /* Ensure same height as input and icon */
+    width: 40px;
+    padding: 0;
+}
+.showpassword:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+.submitbutton {
+    background: linear-gradient(90deg, #3a8dde 0%, #1e90ff 100%); 
+    color: #fff; 
+    border: none; 
+    border-radius: 12px; 
+    padding: 16px 40px; 
+    font-size: 1.2rem; cursor: pointer; 
+    box-shadow: 0 4px 16px rgba(58,141,222,0.12); 
+    margin: 10px;
+}
+.popupClose{
+    padding: 8px 16px; 
+    border: none; 
+    border-radius: 8px; 
+    color: white; 
+    font-weight: bold;
+    background: linear-gradient(90deg, #3a8dde 0%, #1e90ff 100%); 
+}
+.popupMessage{
+    color: white; 
+    font-size: 1rem; 
+    margin-bottom: 1rem;
+}
+.popupContent{
+    background: #1a1c23; 
+    padding: 1.5rem 2rem; 
+    border-radius: 16px; 
+    max-width: 90%; 
+    text-align: center;
+}
+.popup{
+    display: none;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.6); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999;
+}

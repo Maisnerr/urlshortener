@@ -2,9 +2,9 @@
 <html lang="cs">    
     <head> 
         <title>URL Shortener │ Maisner</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='statsstyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/statsstyle.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">   
+        <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}">   
         <meta name="viewport" content="width=device-width, initial-scale=0.7">
         <meta charset="UTF-8"> 
         <style>
@@ -20,11 +20,21 @@
         </style>
     </head> 
     <body>
+        <div class="user">
+            <a class="login" href="register" id="Login" style="display: none;">
+                <img src="{{ url_for('static', filename='images/login.webp') }}" class="loginImg" alt="Login Icon" width="35px" height="35px">
+                <p class="loginChild interbold">Register</p>
+            </a>
+            <a href="#cau" id="Loggedin" style="display: none;">
+                <img src="{{ url_for('static', filename='images/default_pfp.webp') }}" style="border-radius: 50%;" alt="User Icon" width="85px" height="85px">
+            </a>
+        </div>
+
         <div class="center">
             <h1 class="custom-gradient webname interbold">Linkly</h1>
         </div>
 
-        <img src="{{ url_for('static', filename='/images/icon.png') }}" style="width: 70px; position: absolute; top: 5px; left: 5px;">
+        <img src="{{ url_for('static', filename='images/icon.webp') }}" alt="Icon" style="width: 90px; position: absolute; top: 28px; left: 28px;">
             
         <div class="center">
             <p class="custom-gradient subname interbold">Enter your shortened url:</p>
@@ -32,7 +42,7 @@
 
         <div class="center linkinputdiv">
             <form id="urlForm" class="linkinputform">
-                <img class="linkicon" src="{{ url_for('static', filename='/images/link.png') }}" width="40px" height="40px">
+                <img class="linkicon" src="{{ url_for('static', filename='/images/link.webp') }}" width="40px" height="40px">
                 <input class="linkinput interlight" id="urlInput" type="text" placeholder="Enter the link here" name="urlInput" required>
                 <button type="submit" class="shortenbutton interbold">See the stats!</button>
             </form>
@@ -42,7 +52,7 @@
             <div class="stats">
                 <div class="statsmain">
                     <span id="statheader" class="statsheader" style="text-align: start;">/</span>
-                    <img id="statimg" class="statsimg" src="{{ url_for('static', filename='/images/default_qr.png') }}" alt="default_qr">
+                    <img id="statimg" class="statsimg" src="{{ url_for('static', filename='/images/default_qr.webp') }}" alt="default_qr">
                 </div>
                 <div class="statstext">
                     <p id="statshort" class="statsp">Short URL:</p>
@@ -53,10 +63,10 @@
             </div>
         </div>
 
-        <div class="home center">
+        <div class="home">
             <a href="{{ url_for('index') }}" class="custom-gradient interbold">⟨ HOME</a>
         </div>
 
-        <script src="{{ url_for('static', filename='stats.js') }}  "></script>
+        <script src="{{ url_for('static', filename='js/stats.js') }}  "></script>
     </body>
 </html>

@@ -8,6 +8,8 @@ const shortInput = document.getElementById('shortInput');
 const shortenedUrlDisplay = document.getElementById('shortenedUrl');
 const spinner = document.getElementById("spinner");
 
+var logged = false;
+
 var user = "admin";
 
 let gotoUrl = "";
@@ -111,4 +113,10 @@ function copyUrl(link){
     }
 
     navigator.clipboard.writeText(link);
+}
+
+if(!logged){
+    document.getElementById("Login").style.display = "flex";
+}else{
+    document.getElementById("Loggedin").style.display = "block";
 }

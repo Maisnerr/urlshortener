@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<html lang="cs">    
+    <head> 
+        <title>URL Shortener │ Maisner</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/registerstyle.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" href="{{ url_for('static', filename='images/icon.webp') }}">   
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
+        <meta charset="UTF-8"> 
+        <style>
+            @font-face {
+                font-family: "inter-bold";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Bold.woff2') }}");
+            }
+
+            @font-face {
+                font-family: "inter-light";
+                src: url("{{ url_for('static', filename='inter/Inter_18pt-Light.woff2') }}");
+            }
+        </style>
+    </head> 
+    <body>
+
+        <div class="center">
+            <h1 class="custom-gradient webname interbold">Linkly</h1>
+        </div>
+
+        <img src="{{ url_for('static', filename='images/icon.webp') }}" alt="Icon" style="width: 90px; position: absolute; top: 28px; left: 28px;">
+            
+        <div class="center">
+            <p class="custom-gradient subname interbold">Create your account</p>
+        </div>
+        <div class="center interlight descdiv">
+            <p class="center desc"  style="margin-top: 0px;">or miss out on features that make people stay.</p>
+        </div>
+        
+        <div class="center linkinputdiv">
+            <form id="urlForm">
+                <div class="linkinputform">
+                    <img alt="Link icon" class="linkicon" src="{{ url_for('static', filename='images/email.webp') }}" width="40px" height="40px">
+                    <input class="linkinput interlight" type="text" placeholder="Enter the username here" name="name" required>
+                </div>
+
+                <div class="linkinputform">
+                    <img alt="Link icon" class="linkicon" src="{{ url_for('static', filename='images/star.webp') }}" width="40px" height="40px">
+                    <input class="linkinput interlight" id="PasswordInput" type="password" placeholder="Enter the password here" name="pass" required>
+                    <img alt="show password" id="PasswordToggle" class="showpassword" src="../static/images/show.webp" width="40px" height="40px" onclick="togglePasswordVisibility()">
+                </div>
+
+                <button type="submit" class="submitbutton interbold">Register</button>
+            </form>
+            <a class="interbold statspage" href="{{ url_for('statssite') }}">Or login if you already have an account ➤</a>
+        </div>
+
+        <div class="home">
+            <a href="{{ url_for('index') }}" class="custom-gradient interbold">⟨ HOME</a>
+        </div>
+
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popupContent">
+                <p id="popup-message" class="popupMessage interlight">This is a popup message</p>
+                <button onclick="hidePopup()" class="popupClose interbold">
+                  OK
+                </button>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/register.js') }}  "></script>
+    </body>
+</html>

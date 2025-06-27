@@ -120,6 +120,9 @@ td a{
     background-color: #181E29;
     display:flex;
 }
+.linkinputdiv{
+    margin-bottom: 1px;
+}
 .linkinput{
     background-color: transparent;
     border: transparent;
@@ -144,65 +147,117 @@ td a{
 .shortenbutton:hover{
     background-color: #326cff;
 }
-.spinner{
-    height: 60px;
-    width: 60px;
-    border: 10px solid;
-    border-radius: 60px;
-    border-color: #000000 transparent #000000 transparent;
-    animation: spin 1.5s ease infinite;
+.output{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-#spinner{
-    height: 80px;
-    width: 80px;
-    border: 10px solid rgb(255, 255, 255);
-    position: relative;
-    border-radius: 60px;
-    background-color: white;
-    top: 190px;
-    left: 85px;
-    overflow: hidden;
+.outputa{
+    color: white;
+    margin-bottom: 40px;
+    text-decoration: none;
 }
-@keyframes spin{
-    to{
-        transform: rotate(720deg);
+.utils img{
+    width: 64px;
+    height: 64px;
+    margin: 20px 10px;
+}
+.tablecontainer{
+    background-color: #ffffff;
+    padding: 50px;
+}
+table{
+    border: #353C4A solid 2px;
+    background-color: #353C4A;
+    border-radius: 25px;
+    width: 100vw;
+    color: white;
+    text-decoration: none;
+}
+@keyframes spinanim {
+    from {
+        transform: rotate(0deg);
     }
+    to {
+        transform: rotate(1440deg);
+    }
+}
+
+.spinner {
+    position: relative;
+    top: 250px;
+    background-color: white;
+    border: 10px solid;
+    border-color: #000000 #ffffff #ffffff #ffffff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spinanim 2s ease infinite;
+}
+.showcase{
+    width: 25%;
+    min-width: 300px;
+    font-size: 1rem;
+    text-align: left;
+    color: #C9CED6;
+    width: 500px;
+}
+.showcase a{
+    color: #326cff;
+}
+.showcasediv{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.showcasedivimgs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 100px;
+}
+.header{
+    font-family: inter-bold;
+    font-size: 1.5rem;
+    position: relative;
+    right: 2%;
 }
 .statspage{
     color: #144EE3;
     margin-top: 40px;
+    transition: 0.1s;
 }
-.home a{
-    font-size: 5rem;
+.statspage:hover{
+    color: #5988ff;
 }
-.home a:hover{
-    font-size: 5.3rem;
-    transition: ease 0.1s;
+.user{
+    position: absolute;
+    top: 33px;
+    right: 33px;
 }
-.statsimg{
-    width: 10vh;
+.login{
+    color: white;
+    display: inline-block;
+    border: #353C4A 2px solid;
+    background-color: none;
+    padding: 10px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
-.stats{
-    margin-top: 25px;
-    color:white;
-    font-family: inter-bold;
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    max-width: 450px;
+.loginChild{
+    color: white;
+    display: inline-block;
+    margin: 0px;
+    padding: 5px;
+    font-size: 25px;
 }
-.statsmain{
-    display: flex;
-    gap: 25px;
-    width: 100%;
-    font-size: 2.5rem;
-    justify-content: space-around;
+.loginImg{
+    border-radius: 50%;
+    border: #ffffff 2px solid;
 }
-.statsp{
-    margin: 5px;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.login:hover{
+    background-color: #353C4A;
 }

@@ -20,10 +20,10 @@ import os
 
 load_dotenv()
 
-PRODUCTION = True
-## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-## MUSIS ZMENIT KDYZ JDE NA RENDER
-## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+if(os.getenv("PRODUCTION")=="True"):
+    PRODUCTION = True
+else:   
+    PRODUCTION = False
 
 cloudinary.config(
     cloud_name=os.getenv("CLOUDINARY_NAME"),
@@ -78,7 +78,10 @@ class URL(db.Model):
 
     img_url = db.Column(db.String(2048), nullable=False)
 
-
+##
+##  chatgpt je frajer
+##  NEROZUMIM TOMU ALE FUNGUJE TO 
+##
 def is_valid_url(url):
     """
     Validate the URL format using regex.
@@ -87,6 +90,10 @@ def is_valid_url(url):
     regex = r'^(https?|ftp)://[^\s/$.?#].[^\s]*$'
     return re.match(regex, url) is not None
 
+
+##
+##  PREDCHUDCE NOVEHO SHORT URL
+##
 def generate_short_url(url):
     if(url==""):
         characters = string.digits + string.ascii_letters
@@ -96,6 +103,9 @@ def generate_short_url(url):
         short_url = url
         return url
 
+##
+##  FINALNI GENEROVANI NOVEHO SHORT URL
+##
 def new_short_url():
     all_urls = URL.query.all()
     short_url = generate_short_url("")
@@ -104,6 +114,9 @@ def new_short_url():
             return new_short_url()
     return short_url
 
+##
+##  GENEROVANI QR KODU
+##
 def generate_qr_code(short_url):
     qr = qrcode.QRCode(
         version=1,
@@ -129,6 +142,9 @@ def generate_qr_code(short_url):
 
     return image_url
 
+##
+##  CHECK ZDA JE SHORT URL OK
+##
 def check_after(after):
     characters = string.digits + string.ascii_letters
     all_urls = URL.query.all()
@@ -146,6 +162,9 @@ def check_after(after):
             return "invalid"
     return "chill"
 
+##
+##  FORMATOVANI DAT PRO VRACENI V @/getdata
+##
 def format_for_return(entry):
     data = []
     data.append(entry.short_url)
@@ -167,10 +186,17 @@ def format_for_return(entry):
 def statssite():
     return render_template("stats.html")
 
+@app.route("/register")
+def registerpage():
+    return render_template("register.html")
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
+##
+##  ZKRACENI URL
+##
 @app.route("/shorten", methods=["POST"])
 def shorten_url():
     data = request.json
@@ -213,6 +239,9 @@ def shorten_url():
     send_webhook("New URL Created!", f"URL: {LOCALURL+short_url}", int("5fe3a8", 16), WEBHOOK_URL)
     return jsonify({"short_url": LOCALURL + short_url, "file_url": f"{LOCALURL}static/qrs/{short_url}.png", "img_url": img_url})   
 
+##
+##  ZMENA KRATKEHO URL NA STRANKU
+##
 @app.route("/<short_url>")
 def redirect_to_long(short_url):
     url_entry = URL.query.filter_by(short_url=short_url).first()
@@ -224,6 +253,9 @@ def redirect_to_long(short_url):
         return redirect(url_entry.long_url)
     return jsonify({"error": "URL not found"}), 404
 
+##
+##  VRACI STATISTIKY O LINKU
+##
 @app.route("/stats/<short_url>")
 def actual_get_stats(short_url):
 
@@ -234,6 +266,9 @@ def actual_get_stats(short_url):
 
     return jsonify({"short_url": short_url, "long_url":url_entry.long_url, "clicks":url_entry.clicks, "date":url_entry.date, "img_url":url_entry.img_url})
 
+##
+##  VUBEC NEVIM CO TOTO DELA ALE JE TO DULEZITE
+##
 @app.route("/getlength", methods=["POST"])
 def getlength():
     length = []
@@ -243,6 +278,20 @@ def getlength():
 
     return jsonify({"len": length})
 
+##
+##  REGISTRACE UZIVATELE
+##
+@app.route("/register", methods=["POST"])
+def register():
+    data = request.get_json()
+    name = data.get("name")
+    password = data.get("pass")
+
+    return jsonify({"message": "Registration successful", "name": name, "password": password}), 200
+
+##
+##  TAKY NEVIM CO TOTO DELA
+##
 @app.route("/getdata", methods=["POST"])
 def return_data():
     data = request.json
@@ -255,6 +304,9 @@ def return_data():
 
     return jsonify({"short_url": mezi[0], "long_url": mezi[1], "clicks": mezi[2], "date": mezi[3], "img_url": mezi[4]})
 
+##
+##  CHECK ZDA SERVER BEZI
+##
 @app.route("/serverhealth", methods=["GET"])
 def server_health():
     send_webhook("Server Check!", f"Server is running just fine", int("34d958", 16), WEBHOOK_HEALTH)
