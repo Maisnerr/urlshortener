@@ -41,8 +41,8 @@
                 <img src="{{ url_for('static', filename='images/login.webp') }}" class="loginImg" alt="Login Icon" width="35px" height="35px">
                 <p class="loginChild interbold">Register</p>
             </a>
-            <a href="#cau" id="Loggedin" style="display: none;">
-                <img src="{{ url_for('static', filename='images/default_pfp.webp') }}" style="border-radius: 50%;" alt="User Icon" width="85px" height="85px">
+            <a id="Loggedin" style="display: none;">
+                <img src="{{ url_for('static', filename='images/default_pfp.webp') }}" class="profileIcon" alt="User Icon" width="85px" height="85px">
             </a>
         </div>
 
@@ -87,6 +87,13 @@
                 <img alt="Chain" src="{{ url_for('static', filename='images/icons/chain.webp') }}" width="70px">
                 <img alt="Shield" src="{{ url_for('static', filename='images/icons/shield.webp') }}" width="70px">
                 <img alt="Hand" src="{{ url_for('static', filename='images/icons/hand.webp') }}" width="70px">
+            </div>
+        </div>
+
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popupContent">
+                <p id="popup-message" class="popupMessage interlight">This is a popup message</p>
+                <button onclick="hidePopup()" class="popupClose interbold"> OK </button>
             </div>
         </div>
 

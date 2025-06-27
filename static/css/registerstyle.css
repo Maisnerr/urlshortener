@@ -171,7 +171,6 @@ td a{
 }
 .statspage{
     color: #144EE3;
-    margin-top: 40px;
 }
 .home {
     position: fixed;
@@ -224,7 +223,6 @@ td a{
     color: white;
     display: inline-block;
     border: #353C4A 2px solid;
-    background-color: none;
     padding: 10px;
     border-radius: 50px;
     text-decoration: none !important;
@@ -250,8 +248,8 @@ td a{
     margin-right: 10px;
     transition: filter 0.2s, transform 0.2s;
     filter: brightness(0.85);
-    align-self: center;           /* Vertically center in flex container */
-    height: 40px;                 /* Ensure same height as input and icon */
+    align-self: center;           
+    height: 40px;                 
     width: 40px;
     padding: 0;
 }
@@ -259,14 +257,18 @@ td a{
     transform: scale(1.2) rotate(10deg);
 }
 .submitbutton {
-    background: linear-gradient(90deg, #3a8dde 0%, #1e90ff 100%); 
+    background-color: #144EE3;
     color: #fff; 
     border: none; 
     border-radius: 12px; 
     padding: 16px 40px; 
     font-size: 1.2rem; cursor: pointer; 
     box-shadow: 0 4px 16px rgba(58,141,222,0.12); 
-    margin: 10px;
+    margin: 40px;
+    transition: background-color 0.2s;
+}
+.submitbutton:hover {
+    background-color: #3a8dde;
 }
 .popupClose{
     padding: 8px 16px; 
@@ -274,7 +276,11 @@ td a{
     border-radius: 8px; 
     color: white; 
     font-weight: bold;
-    background: linear-gradient(90deg, #3a8dde 0%, #1e90ff 100%); 
+    background-color: #144EE3;
+    transition: background-color 0.2s;
+}
+.popupClose:hover{
+    background-color: #3a8dde;
 }
 .popupMessage{
     color: white; 

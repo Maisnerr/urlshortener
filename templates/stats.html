@@ -67,6 +67,13 @@
             <a href="{{ url_for('index') }}" class="custom-gradient interbold">⟨ HOME</a>
         </div>
 
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popupContent">
+                <p id="popup-message" class="popupMessage interlight">This is a popup message</p>
+                <button onclick="hidePopup()" class="popupClose interbold"> OK </button>
+            </div>
+        </div>
+
         <script src="{{ url_for('static', filename='js/stats.js') }}  "></script>
     </body>
 </html>

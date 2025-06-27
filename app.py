@@ -15,8 +15,10 @@ from waitress import serve
 import logging
 import requests
 import datetime
+import uuid
 from dotenv import load_dotenv
 import os
+from argon2 import PasswordHasher
 
 load_dotenv()
 
@@ -64,6 +66,7 @@ SITES = [
     "http://192.168.1.138:5000"
 ]
 CORS(app, resources={r"/*": {"origins": SITES}})
+hasher = PasswordHasher(time_cost=2, memory_cost=10240, parallelism=2)
 
 class URL(db.Model):
     __tablename__ = "Linklyfun"
@@ -77,6 +80,18 @@ class URL(db.Model):
     date = db.Column(db.Date, nullable=False, default=datetime.date.today)
 
     img_url = db.Column(db.String(2048), nullable=False)
+
+class UserBase(db.Model):
+    __tablename__ = "linklyfun_userbase"
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+    uuid = db.Column(db.String(36), unique=True, nullable=True)
+    pfp_url = db.Column(db.String, default="https://res.cloudinary.com/drxgvf9hq/image/upload/v1751063741/defaultuser_hjdpwm.png", nullable=True)  # profile picture URL
+    creation = db.Column(db.Date, default=datetime.date.today, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    role = db.Column(db.String, default="user", nullable=False)  # e.g. "user", "admin"
 
 ##
 ##  chatgpt je frajer
@@ -261,8 +276,9 @@ def actual_get_stats(short_url):
 
     if(len(short_url)<11):
         url_entry = URL.query.filter_by(short_url=short_url).first()
-    else:
-        return jsonify({"error": "retard"}), 400
+    
+    if not url_entry:
+        return jsonify({"error": "URL not found"}), 69
 
     return jsonify({"short_url": short_url, "long_url":url_entry.long_url, "clicks":url_entry.clicks, "date":url_entry.date, "img_url":url_entry.img_url})
 
@@ -281,13 +297,23 @@ def getlength():
 ##
 ##  REGISTRACE UZIVATELE
 ##
-@app.route("/register", methods=["POST"])
+@app.route("/registering", methods=["POST"])
 def register():
     data = request.get_json()
     name = data.get("name")
     password = data.get("pass")
 
-    return jsonify({"message": "Registration successful", "name": name, "password": password}), 200
+    hashed_password = hasher.hash(password)
+
+    try:
+        new_entry = UserBase(username=name, password=hashed_password, uuid=str(uuid.uuid4()))
+        db.session.add(new_entry)
+        db.session.commit()
+    except Exception as e:
+        print(colored(f"Error while registering user: {e}", "red"))
+        return jsonify({"error": "Unexpected error happened on the server, please try again later"}), 400
+
+    return jsonify({"redirect": "http://192.168.1.138:5000/"})
 
 ##
 ##  TAKY NEVIM CO TOTO DELA

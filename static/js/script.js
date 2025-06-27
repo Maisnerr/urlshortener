@@ -1,4 +1,4 @@
-const localurl = "https://www.linkly.fun"
+const localurl = "http://192.168.1.138:5000"
 // http://192.168.1.138:5000
 // https://www.linkly.fun
 
@@ -8,11 +8,18 @@ const shortInput = document.getElementById('shortInput');
 const shortenedUrlDisplay = document.getElementById('shortenedUrl');
 const spinner = document.getElementById("spinner");
 
-var logged = false;
-
-var user = "admin";
+var logged = true;
 
 let gotoUrl = "";
+
+function showPopup(message) {
+  document.getElementById("popup-message").textContent = message;
+  document.getElementById("popup").style.display = "flex";
+}
+
+function hidePopup() {
+  document.getElementById("popup").style.display = "none";
+}
 
 const datum = new Date();
 switch(datum.getMonth()){
@@ -63,7 +70,7 @@ form.addEventListener('submit', async (event) => {
     const after = "";
 
     if (!longUrl) {
-        alert("Please enter a URL");
+        showPopup("Please enter a URL");
         return;
     }
 
@@ -99,11 +106,11 @@ form.addEventListener('submit', async (event) => {
             }
         } else {
             const errorData = await response.json();
-            alert(`Error: ${errorData.error || "Something went wrong!"}`);
+            showPopup(`Error: ${errorData.error || "Something went wrong!"}`);
         }
     } catch (error) {
         console.error('Error during request:', error);
-        alert('Something went wrong with the request!');
+        showPopup('Something went wrong with the request!');
     }
 });
 
@@ -120,3 +127,4 @@ if(!logged){
 }else{
     document.getElementById("Loggedin").style.display = "block";
 }
+

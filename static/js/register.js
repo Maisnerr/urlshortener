@@ -2,12 +2,6 @@ const passwordInput = document.getElementById('PasswordInput');
 const passwordToggle = document.getElementById('PasswordToggle');
 let passVisible = false;
 
-console.log(localStorage.getItem("kurba"));
-console.log(sessionStorage.getItem("kurbicka"));
-
-localStorage.setItem("kurba", "cauky");
-sessionStorage.setItem("kurbicka", "mnauky");
-
 function togglePasswordVisibility() {
     if (passVisible) {
         passwordInput.type = 'password';
@@ -51,7 +45,7 @@ async function handleUrlFormSubmit(event) {
     showPopup("Username must be between 3 and 20 characters.");
     return;
   }else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-    showPopup("Username can only contain letters, numbers, and underscores.");
+    showPopup("Username can only contain english letters, numbers, and underscores.");
     return;
   }
 
@@ -62,7 +56,7 @@ async function handleUrlFormSubmit(event) {
 
   try {
     // ✅ Step 2: Send data to backend
-    const res = await fetch("/register", {
+    const res = await fetch("/registering", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -72,6 +66,16 @@ async function handleUrlFormSubmit(event) {
       const error = await res.json();
       showPopup(error.message || "Registration failed.");
       return;
+    }
+
+    // ✅ Step 3: Handle successful response
+
+    const result = await res.json();
+
+    if (result.redirect) {
+      window.location.href = result.redirect;  // ← this does the actual browser redirect
+    } else {
+      console.log("laces");
     }
 
   } catch (err) {

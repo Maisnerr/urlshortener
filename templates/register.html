@@ -48,9 +48,10 @@
                 </div>
 
                 <button type="submit" class="submitbutton interbold">Register</button>
-            </form>
-            <a class="interbold statspage" href="{{ url_for('statssite') }}">Or login if you already have an account ➤</a>
+            </form> 
         </div>
+
+        <a class="interbold statspage center" href="{{ url_for('statssite') }}">Or login if you already have an account ➤</a>
 
         <div class="home">
             <a href="{{ url_for('index') }}" class="custom-gradient interbold">⟨ HOME</a>
@@ -59,9 +60,7 @@
         <div id="popup" class="popup" style="display: none;">
             <div class="popupContent">
                 <p id="popup-message" class="popupMessage interlight">This is a popup message</p>
-                <button onclick="hidePopup()" class="popupClose interbold">
-                  OK
-                </button>
+                <button onclick="hidePopup()" class="popupClose interbold"> OK </button>
             </div>
         </div>
 

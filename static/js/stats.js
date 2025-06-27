@@ -1,4 +1,4 @@
-const localurl = "https://www.linkly.fun";
+const localurl = "http://192.168.1.138:5000";
 const form = document.getElementById('urlForm');
 
 const statheader = document.getElementById("statheader");
@@ -8,13 +8,22 @@ const statlong = document.getElementById("statlong");
 const statclicks = document.getElementById("statclicks");
 const statdate = document.getElementById("statdate");
 
+function showPopup(message) {
+  document.getElementById("popup-message").textContent = message;
+  document.getElementById("popup").style.display = "flex";
+}
+
+function hidePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
 form.addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent form from submitting traditionally
 
     const shortUrl = urlInput.value.trim();
 
     if (!shortUrl) {
-        alert("Please enter a URL");
+        showPopup("Please enter a URL");
         return;
     }
 
@@ -34,11 +43,11 @@ form.addEventListener('submit', async (event) => {
             }
         } else {
             const errorData = await response.json();
-            alert(`Error: ${errorData.error || "Something went wrong!"}`);
+            showPopup(`Error: ${errorData.error || "Something went wrong!"}`);
         }
     } catch (error) {
+        showPopup('Something went wrong with the request!');
         console.error('Error during request:', error);
-        alert('Something went wrong with the request!');
     }
 });
 
